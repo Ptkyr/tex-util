@@ -1,0 +1,107 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{linalg}
+  [2022/03/01 1B]
+
+\RequirePackage[d]{esvect}
+
+\newcommand{\dotp}[2]{\vv{#1}\cdot\vv{#2}}
+\newcommand{\txproj}{\text{proj}}
+\newcommand{\txperp}{\text{perp}}
+\newcommand{\projonto}[2]{\text{proj}_{\vv{#1}}(\vv{#2})}
+\newcommand{\perponto}[2]{\text{perp}_{\vv{#1}}(\vv{#2})}
+
+\newcommand{\letmatrix}{A\in M_{m\times n}(\mathbb{F})}
+\newcommand{\letsquare}{A\in M_{n\times n}(\mathbb{F})}
+\newcommand{\letmat}[1]{#1 \in M_{m \times n}(\mbb{F}{})}
+\newcommand{\letsqmat}[1]{#1 \in M_{n \times n}(\mbb{F}{})}
+\newcommand{\lettransform}{T: \mbb{F}{n} \to \mbb{F}{m}}
+\newcommand{\transform}[3]{#1: \mbb{F}{#2} \to \mbb{F}{#3}}
+\newcommand{\letlinop}{T: \mbb{F}{n} \to \mbb{F}{n}}
+\newcommand{\stdmat}[1]{
+\begin{bmatrix}
+    #1
+\end{bmatrix}_{\mathcal{E}}}
+\newcommand{\coordmat}[2]{
+\begin{bmatrix}
+    #1
+\end{bmatrix}_{#2}}
+\newcommand{\basis}[1]{\vv{e_{#1}}}
+\newcommand{\kvectors}{\vv{v_1}, \dots, \vv{v_k}}
+\newcommand{\kvecsub}[1]{\vv{v_{#1 1}}, \dots, \vv{v_{#1 k}}}
+\newcommand{\vecmat}[2]{
+\begin{bmatrix}
+    \vv{#1} \,\, \dots \,\, \vv{#2}
+\end{bmatrix}}
+\newcommand{\vectors}[2]{\vv{#1}, \dots, \vv{#2}}
+\newcommand{\vectorsubs}[4]{\vv{#1}_{#2}, \dots, \vv{#3}_{#4}}
+\newcommand{\tvec}[1]{
+    \begin{bmatrix}
+        #1
+    \end{bmatrix}^T
+}
+\newcommand{\cob}[2]{{}_{#1}
+\begin{bmatrix}
+    I
+\end{bmatrix}_{#2}}
+\newcommand{\coord}[2]{
+\begin{bmatrix}
+    \vv{#1}
+\end{bmatrix}_{#2}}
+\newcommand{\augmat}[2]{[#1 \mid #2]}
+\newcommand{\charpol}[1]{C_{#1}(\lambda)}
+
+\newcommand{\setspan}[1]{\operatorname{Span}\left\{#1\right\}}
+\newcommand{\spans}{\operatorname{Span}}
+\newcommand{\nullity}[1]{\operatorname{nullity}\left(#1\right)}
+\newcommand{\rref}{\operatorname{RREF}}
+\newcommand{\colspace}[1]{\operatorname{Col}\left(#1\right)}
+\newcommand{\rowspace}[1]{\operatorname{Row}\left(#1\right)}
+\newcommand{\nullspace}[1]{\operatorname{Null}\left(#1\right)}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\range}[1]{\operatorname{Range}\left(#1\right)}
+\newcommand{\kernel}[1]{\operatorname{Ker}\left(#1\right)}
+\newcommand{\id}{\operatorname{id}_n}
+\newcommand{\adj}[1]{\operatorname{adj}\left(#1\right)}
+
+\newlength{\rrwidth}
+\setlength{\rrwidth}{6em}
+\newcommand{\rrarrow}[1]{\xrightarrow{\mathmakebox[\rrwidth]{#1}}}
+
+\newlength{\mwidth}
+\setlength{\mwidth}{16pt}
+\newlength{\midwidth}
+\setlength{\midwidth}{20pt}
+\newlength{\comwidth}
+\setlength{\comwidth}{35pt}
+
+\newcolumntype{C}{>{\centering\arraybackslash$}m{\mwidth}<{$}}
+\newcolumntype{M}{>{\centering\arraybackslash$}m{\midwidth}<{$}}
+\newcolumntype{I}{>{\centering\arraybackslash$}m{\comwidth}<{$}}
+
+\newenvironment{commatrix}{\left[\begin{array}{@{}CMC|I@{}}}{\end{array}\right]}
+\newcommand{\commat}[1]{\begin{commatrix} #1 \end{commatrix}}
+
+\newenvironment{amatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1-1}{c}|c@{}}}{\end{array}\right]}
+\newcommand{\am}[2]{\begin{amatrix}{#1} #2 \end{amatrix}}
+
+\newenvironment{setamatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1-1}{C}|C@{}}}{\end{array}\right]}
+\newcommand{\setam}[2]{\begin{setamatrix}{#1} #2 \end{setamatrix}}
+
+\newenvironment{setbmatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1}{C}@{}}}{\end{array}\right]}
+\newcommand{\setbm}[2]{\begin{setbmatrix}{#1} #2 \end{setbmatrix}}
+
+\newenvironment{invmatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1}{C}|@{}*{\numexpr#1}{C}@{}}}{\end{array}\right]}
+\newcommand{\setinv}[2]{\begin{invmatrix}{#1} #2 \end{invmatrix}}
+
+% \lvec
+\ExplSyntaxOn
+\clist_new:N \l_lvec_clist
+\NewDocumentCommand{\lvec}{O{\\}mO{b}}{
+  \clist_set:Nn \l_lvec_clist {#2} % Set the list
+  \begin{#3matrix}
+  \clist_use:Nn \l_lvec_clist {#1} % show it with separator from #1 (\\)
+  \end{#3matrix}
+}
+\ExplSyntaxOff
+
+\endinput
