@@ -1,0 +1,47 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{base}
+  [2022/03/01 1B]
+
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{amsfonts, amsthm, amsmath, amssymb, array}
+\RequirePackage{mathtools}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[makeroom]{cancel}
+\RequirePackage{fancyhdr}
+\RequirePackage{graphicx}
+\RequirePackage{MnSymbol}
+\RequirePackage{physics}
+
+\NewDocumentCommand{\mbb}{O{F}O{n}}{\mathbb{#1}^{#2}}
+\newcommand{\quads}{\hspace{0.4em}}
+\newcommand{\matped}{.\hspace{0.4em}\hspace{1.5pt}}
+\newcommand{\fracnewline}{\\[6pt]}
+\newcommand{\st}{\textsuperscript{st}}
+\newcommand{\nd}{\textsuperscript{nd}}
+\newcommand{\rd}{\textsuperscript{rd}}
+\newcommand{\tth}{\textsuperscript{th}}
+\newcommand{\elemr}{\in \mathbb{R}}
+\newcommand{\elemn}{\in \mathbb{N}}
+\newcommand{\elemz}{\in \mathbb{Z}}
+\newcommand{\elemc}{\in \mathbb{C}}
+\newcommand{\elemf}{\in \mathbb{F}}
+\newcommand{\elem}[1]{\in \mathbb{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\cquad}{\,\,\,}
+\newcommand{\m}[1]{\mathcal{#1}}
+\newcommand{\mE}{\mathcal{E}}
+\newcommand{\mB}{\mathcal{B}}
+\newcommand{\mL}{\mathcal{L}}
+\newcommand{\mP}{\mathcal{P}}
+\newcommand{\mC}{\mathcal{C}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\f}[2]{\frac{#1}{#2}}
+\newcommand{\recip}[1]{\frac{1}{#1}}
+\newcommand{\newq}[1]{\textbf{Question #1.} \bigbreak}
+\newcommand{\fwdd}{(\Rightarrow)}
+\newcommand{\revd}{(\Leftarrow)}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\parens}[1]{\left(#1\right)}
+\newcommand{\brackets}[1]{\left[#1\right]}
+
+\endinput
