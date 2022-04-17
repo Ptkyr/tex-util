@@ -1,0 +1,60 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{cs}
+  [2022/03/01 1B]
+
+\RequirePackage{indentfirst}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{tcolorbox}
+\RequirePackage{listings}
+
+\newcommand{\propcol}{Cerulean}
+\newcommand{\defcol}{Black}
+\newcommand{\remcol}{ForestGreen}
+\newcommand{\thmcol}{Red}
+\newcommand{\propocol}{Goldenrod}
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+
+\newtcolorbox{thmbox}[1]{colback=\thmcol!5!white,
+colframe=\thmcol!100!black,fonttitle=\bfseries,
+title={#1}}
+\newtcolorbox{propbox}[1]{colback=\propcol!5!white,
+colframe=\propcol!100!black,fonttitle=\bfseries,
+title={#1}}
+\newtcolorbox{defbox}[1]{colback=\defcol!5!white,
+colframe=\defcol!100!black,fonttitle=\bfseries,
+title={#1}}
+\newtcolorbox{rembox}{colback=\remcol!5!white,
+colframe=\remcol!100!black}
+\newtcolorbox{propobox}{colback=\propocol!5!white,
+colframe=\propocol!100!black}
+\newtcolorbox{impbox}{colback=\thmcol!5!white,
+colframe=\thmcol!100!black}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{white},   commentstyle=\color{Green},
+  keywordstyle=\color{RoyalBlue},
+  numberstyle=\tiny\color{RubineRed},
+  stringstyle=\color{Orchid},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{
+    language=C,
+    style=mystyle
+}
+
+\endinput
