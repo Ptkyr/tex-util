@@ -1,0 +1,107 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{linalg}
+  [2022/03/01 1B]
+
+\RequirePackage[d]{esvect}
+
+% Operators
+\newcommand{\setspan}{\operatorname{Span}}
+\newcommand{\nullity}{\operatorname{nullity}}
+\newcommand{\rref}{\operatorname{RREF}}
+\newcommand{\colspace}{\operatorname{Col}}
+\newcommand{\rowspace}{\operatorname{Row}}
+\newcommand{\nullspace}{\operatorname{Null}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\range}{\operatorname{Range}}
+\newcommand{\kernel}{\operatorname{Ker}}
+\newcommand{\id}{\operatorname{id}_n}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\vecproj}{\operatorname{proj}}
+\newcommand{\vecperp}{\operatorname{perp}}
+\newcommand{\projonto}[2]{\operatorname{proj}_{\vv{#1}}(\vv{#2})}
+\newcommand{\perponto}[2]{\operatorname{perp}_{\vv{#1}}(\vv{#2})}
+
+% Commands for vectors
+% Quick column vectors
+\ExplSyntaxOn
+\clist_new:N \l_lvec_clist
+\NewDocumentCommand{\lvec}{O{\\}mO{b}}{
+  \clist_set:Nn \l_lvec_clist {#2}
+  \begin{#3matrix}
+  \clist_use:Nn \l_lvec_clist {#1}
+  \end{#3matrix}
+}
+\ExplSyntaxOff
+\NewDocumentCommand{\vectors}{O{v}O{1}O{k}}
+{\vv{#1_{#2}}, \dots, \vv{#1_{#3}}}
+\NewDocumentCommand{\scalars}{O{c}O{1}O{k}}
+{#1_{#2}, \dots, #1_{#3}}
+\NewDocumentCommand{\lincom}{O{v}O{c}O{1}O{k}}
+{
+    {#2}_{#3}{\vv{{#1}_{#3}}} + \dots + {#2}_{#4}{\vv{{#1}_{#4}}}
+}
+\newcommand{\tvec}[1]{\lvec[&]{#1}^T}
+\newcommand{\dotp}[2]{\vv{#1}\cdot\vv{#2}}
+\newcommand{\coord}[2]{
+\begin{bmatrix}
+    \vv{#1}
+\end{bmatrix}_{\mathcal{#2}}}
+\newcommand{\basisvec}[1]{\vv{e_{#1}}}
+
+% Commands for matrices
+\NewDocumentCommand{\letmat}{O{A}O{m}O{n}O{F}}
+{#1 \in M_{#2 \times #3}(\mathbb{#4})}
+\NewDocumentCommand{\matspace}{O{m}O{n}O{F}}
+{M_{#1 \times #2}(\mathbb{#3})}
+\NewDocumentCommand{\transform}{O{T}O{n}O{m}O{F}}
+{#1: \mathbb{#4}^{#2} \to \mathbb{#4}^{#3}}
+\newcommand{\coordmat}[2]{\begin{bmatrix}
+    #1
+\end{bmatrix}_{\mathcal{#2}}}
+\newcommand{\cob}[2]{
+\vphantom{}{\strut_{\mathcal{#1}}}
+{\begin{bmatrix}
+    I
+\end{bmatrix}}
+{\strut_{\mathcal{#2}}}
+}
+\newcommand{\augmat}[2]{\left[#1 \mid #2\right]}
+\newcommand{\charpol}[1]{C_{#1}(\lambda)}
+\newcommand{\vecmat}[2]{
+\begin{bmatrix}
+    \vv{#1} \,\, \dots \,\, \vv{#2}
+\end{bmatrix}}
+
+% Setup for row reduction
+\newlength{\rrwidth}
+\setlength{\rrwidth}{6em}
+\newcommand{\rrarrow}[1]{\xrightarrow{\mathmakebox[\rrwidth]{#1}}}
+
+\newlength{\mwidth}
+\setlength{\mwidth}{16pt}
+\newlength{\midwidth}
+\setlength{\midwidth}{20pt}
+\newlength{\comwidth}
+\setlength{\comwidth}{35pt}
+
+\newcolumntype{C}{>{\centering\arraybackslash$}m{\mwidth}<{$}}
+\newcolumntype{M}{>{\centering\arraybackslash$}m{\midwidth}<{$}}
+\newcolumntype{I}{>{\centering\arraybackslash$}m{\comwidth}<{$}}
+
+% Matrix environments
+\newenvironment{commatrix}{\left[\begin{array}{@{}CMC|I@{}}}{\end{array}\right]}
+\newcommand{\commat}[1]{\begin{commatrix} #1 \end{commatrix}}
+
+\newenvironment{amatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1-1}{c}|c@{}}}{\end{array}\right]}
+\newcommand{\am}[2]{\begin{amatrix}{#1} #2 \end{amatrix}}
+
+\newenvironment{setamatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1-1}{C}|C@{}}}{\end{array}\right]}
+\newcommand{\setam}[2]{\begin{setamatrix}{#1} #2 \end{setamatrix}}
+
+\newenvironment{setbmatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1}{C}@{}}}{\end{array}\right]}
+\newcommand{\setbm}[2]{\begin{setbmatrix}{#1} #2 \end{setbmatrix}}
+
+\newenvironment{invmatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1}{C}|@{}*{\numexpr#1}{C}@{}}}{\end{array}\right]}
+\newcommand{\setinv}[2]{\begin{invmatrix}{#1} #2 \end{invmatrix}}
+
+\endinput
