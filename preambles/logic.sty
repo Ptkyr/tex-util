@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{logic}
+
+\RequirePackage{qtree}
+
+% Operators
+\newcommand{\cond}{\operatorname{if\,\,}}
+\newcommand{\condelse}{\operatorname{else\,\,}}
+\newcommand{\while}{\operatorname{while\,\,}}
+\newcommand{\for}{\operatorname{for\,\,}}
+\newcommand{\conddo}{\operatorname{do\,\,}}
+
+% Course-specific symbols
+\newcommand{\liff}{\longleftrightarrow}
+\newcommand{\limp}{\longrightarrow}
+
+\NewDocumentCommand{\hoare}{O{P}O{S}O{Q}}
+{\{#1\}\hspace{0.2em} #2 \hspace{0.2em}\space\{#3\}}
+\newcommand{\plang}{\mathcal{L}^p}
+\newcommand{\plogic}{\operatorname{Form}(\mathcal{L}^p)}
+
+\ExplSyntaxOn
+\clist_new:N \l_larg_clist
+\NewDocumentCommand{\larg}{O{\\}mm}{
+  \clist_set:Nn \l_larg_clist {#2}
+  \def\arraystretch{1.1}
+  \begin{tabular}{l}
+  \clist_use:Nn \l_larg_clist {#1}
+  \\
+  \hline
+  #3
+  \end{tabular}
+}
+\ExplSyntaxOff
+
+\endinput
