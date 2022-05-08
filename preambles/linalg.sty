@@ -1,6 +1,5 @@
-\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{linalg}
-  [2022/03/01 1B]
 
 \RequirePackage[d]{esvect}
 
@@ -32,10 +31,13 @@
   \end{#3matrix}
 }
 \ExplSyntaxOff
+% list of vectors
 \NewDocumentCommand{\vectors}{O{v}O{1}O{k}}
 {\vv{#1_{#2}}, \dots, \vv{#1_{#3}}}
+% list of scalars
 \NewDocumentCommand{\scalars}{O{c}O{1}O{k}}
 {#1_{#2}, \dots, #1_{#3}}
+% linear combination
 \NewDocumentCommand{\lincom}{O{v}O{c}O{1}O{k}}
 {
     {#2}_{#3}{\vv{{#1}_{#3}}} + \dots + {#2}_{#4}{\vv{{#1}_{#4}}}
@@ -58,6 +60,7 @@
 \newcommand{\coordmat}[2]{\begin{bmatrix}
     #1
 \end{bmatrix}_{\mathcal{#2}}}
+% change of basis
 \newcommand{\cob}[2]{
 \vphantom{}{\strut_{\mathcal{#1}}}
 {\begin{bmatrix}
