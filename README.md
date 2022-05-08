@@ -4,4 +4,4 @@ A collection of LaTeX preambles
 - **cats.sty** contains some **ca**lculus/sta**ts** macros for integrals, series, probability
 - **linalg.sty** contains some linear algebra macros for matrices, vectors, etc
 - **boxes.sty** contains some tcolorbox environments
-- **cs.sty** is notes.sty specialized for cs along with the listings package
+- **logic.sty** contains some commands for logicians
