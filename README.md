@@ -1,7 +1,7 @@
 # Preambles
 A collection of LaTeX preambles
 - **base.sty** contains some core math packages as well as useful universal commands
-- **calc.sty** contains some calculus macros for integrals and series
+- **cats.sty** contains some **ca**lculus/sta**ts** macros for integrals, series, probability
 - **linalg.sty** contains some linear algebra macros for matrices, vectors, etc
-- **notes.sty** contains some tcolorbox environments
+- **boxes.sty** contains some tcolorbox environments
 - **cs.sty** is notes.sty specialized for cs along with the listings package
