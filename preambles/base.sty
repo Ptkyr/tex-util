@@ -1,16 +1,35 @@
-\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{base}
-  [2022/03/01 1B]
+\RequirePackage{kvoptions}
 
+\SetupKeyvalOptions{
+ family=base,
+ prefix=base@
+}
+
+\DeclareStringOption[Eric Wang (e224wang)]{name}[]
+\DeclareStringOption{course}[]
+\DeclareStringOption{code}[]
+\DeclareStringOption{doctype}[]
+\DeclareStringOption{docnum}[]
+
+\ProcessKeyvalOptions*
+
+% Formatting
 \RequirePackage[margin=1in]{geometry}
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\base@course \space \base@code \space \base@doctype \space \base@docnum}
+\rhead{\base@name}
+
+% Useful packages
 \RequirePackage{amsfonts, amsthm, amsmath, amssymb, array}
 \RequirePackage{mathtools}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[makeroom]{cancel}
-\RequirePackage{fancyhdr}
 \RequirePackage{graphicx}
-\RequirePackage{MnSymbol}
 \RequirePackage{physics}
+
 
 \NewDocumentCommand{\mbb}{O{F}O{n}}{\mathbb{#1}^{#2}}
 \newcommand{\quads}{\hspace{0.4em}}
@@ -38,10 +57,59 @@
 \newcommand{\f}[2]{\frac{#1}{#2}}
 \newcommand{\recip}[1]{\frac{1}{#1}}
 \newcommand{\newq}[1]{\textbf{Question #1.} \bigbreak}
+\newcommand{\newqq}[1]{\textbf{Question #1.}}
 \newcommand{\fwdd}{(\Rightarrow)}
 \newcommand{\revd}{(\Leftarrow)}
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\parens}[1]{\left(#1\right)}
 \newcommand{\brackets}[1]{\left[#1\right]}
+\newcommand{\card}[1]{\vert #1 \vert}
+\newcommand{\leteq}{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+                     \hbox{\scriptsize.}\hbox{\scriptsize.}}}%
+                     =}
+
+
+% Theorems/proofs
+\newtheoremstyle{boldrem}%      % Name
+  {2pt}%                        % Space above
+  {0pt}%                        % Space below
+  {}%                           % Body font (empty for upright)
+  {}%                           % Indent amount
+  {\itshape\bfseries}%          % Theorem head font
+  {.}%                          % Punctuation after theorem head
+  {1em}%                        % Space after theorem head, ' ', or \newline
+  {}%                           % Theorem head spec (can be left empty, meaning `normal')
+\swapnumbers
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{subthm}{Theorem}[subsection]
+\newtheorem{subprop}[subthm]{Proposition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{subfact}[subthm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{subcor}[subthm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{sublemma}[subthm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{subdefn}[subthm]{Definition}
+\newtheorem{qstn}[thm]{Question}
+\swapnumbers
+\newtheorem{subqstn}[subthm]{Question}
+\swapnumbers
+\newtheorem{xrcs}[thm]{Exercise}
+\newtheorem{subxrcs}[subthm]{Exercise}
+\newtheorem{alg}[thm]{Algorithm}
+\newtheorem{subalg}[subthm]{Algorithm}
+\theoremstyle{remark}
+\newtheorem*{notn}{Notation}
+\newtheorem*{conv}{Convention}
+\newtheorem*{warn}{Warning}
+\newtheorem*{aside}{Aside}
+\theoremstyle{boldrem}
+\newtheorem*{remk}{Remark}
+\newtheorem*{exmp}{Example}
+\newtheorem*{cex}{Counterexample}
 
 \endinput
