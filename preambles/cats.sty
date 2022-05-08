@@ -1,14 +1,17 @@
-\NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{calc}
-  [2022/03/01 1B]
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cats}
 
-\newcommand{\intab}[2]{\int_a^b #1(#2)\,d#2}
-\newcommand{\intt}[4]{\int_{#1}^{#2} #3(#4)\,d#4}
-\newcommand{\wrapint}[4]{\int_{#1}^{#2} #3\,d#4}
-\newcommand{\iintt}[3]{\int_{#1}^{\infty}#2(#3)\,d#3}
+% Calculus
+\NewDocumentCommand{\defint}{O{f}O{x}O{a}O{b}}
+{\int_{#3}^{#4} #1 \,\mathrm{d}#2}
+\NewDocumentCommand{\deffint}{O{f}O{x}O{a}O{b}}
+{\int_{#3}^{#4} #1(#2)\,\mathrm{d}#2}
+\NewDocumentCommand{\sumfrom}{O{n}O{1}O{\infty}}
+{\sum\limits_{#1 = #2}^{#3}}
+\NewDocumentCommand{\prodfrom}{O{n}O{1}O{\infty}}
+{\prod\limits_{#1 = #2}^{#3}}
 \newcommand{\sumzero}[1]{\sum\limits_{n = 0}^{\infty}#1}
 \newcommand{\sumone}[1]{\sum\limits_{n = 1}^{\infty}#1}
-\newcommand{\sumn}[2]{\sum\limits_{n = #1}^{\infty}#2}
 \newcommand{\limfty}[1]{\lim\limits_{#1 \to \infty}}
 \newcommand{\powser}[1]{#1_n(x - a)^n}
 \newcommand{\diffpowser}[1]{n#1_n(x - a)^{n - 1}}
@@ -18,5 +21,9 @@
 \newcommand{\divp}[1]{^{(#1)}}
 \newcommand{\taypol}[3]{T_{#1,#2}(#3)}
 \newcommand{\rempol}[3]{R_{#1,#2}(#3)}
+
+
+% Statistics
+\NewDocumentCommand{\perm}{O{n}O{k}}{#1^{(#2)}}
 
 \endinput
