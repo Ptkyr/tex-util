@@ -1,0 +1,120 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{boxes}
+\RequirePackage{kvoptions}
+\RequirePackage[many]{tcolorbox}
+
+\SetupKeyvalOptions{
+ family=ptkyr,
+ prefix=ptkyr@
+}
+
+% All default to false
+\DeclareBoolOption{boxed}
+\DeclareBoolOption{boxedthm}
+\DeclareBoolOption{boxedlemma}
+\DeclareBoolOption{boxeddefn}
+\DeclareBoolOption{boxedlight}
+
+\ProcessKeyvalOptions*
+
+% Box Thm Colors
+\definecolor{defncol}{HTML}{ed4700} 
+\definecolor{thmcol}{HTML}{000080} 
+\definecolor{lemmcol}{HTML}{990000} 
+\definecolor{propcol}{HTML}{71169e} 
+
+% Box Theorems
+\newtcbtheorem[number within=section]{bthmi}{Theorem}{
+    width=	\textwidth,
+    colback=black!2,
+    colframe=thmcol,
+    colbacktitle=thmcol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{bthmi}
+\newtcbtheorem[use counter from=bthmi,
+number within=section]{bdefi}{Definition}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=defncol,
+    colbacktitle=defncol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{bdefi}
+\newtcbtheorem[use counter from=bthmi, number within=subsection]{blemmai}{Lemma}{
+    width=\textwidth,
+    colback=white!0,
+    colframe=lemmcol,
+    colbacktitle=lemmcol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{blemmai}
+\newtcbtheorem[use counter from=bthmi, number within=subsection]{bpropositioni}{Proposition}{
+    width=\textwidth,
+    colback=white!0,
+    colframe=propcol,
+    colbacktitle=propcol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{bpropositioni}
+
+% Boxed Theorems/defn
+\newenvironment{bthm}[1]
+    {\begin{bthmi}{#1}{}}
+    {\end{bthmi}}
+\newenvironment{blemma}[1]
+    {\begin{blemmai}{#1}{}}
+    {\end{blemmai}}
+\newenvironment{bdefn}[1]
+    {\begin{bdefi}{#1}{}}
+    {\end{bdefi}}
+\newenvironment{bpropi}[1]
+    {\begin{bpropositioni}{#1}{}}
+    {\end{bpropositioni}}
+    
+% Boxed options
+\ifptkyr@boxed
+\renewenvironment{thm}[1]{\begin{bthm}{#1}}{\end{bthm}}
+\renewenvironment{defn}[1]{\begin{bdefn}{#1}}{\end{bdefn}}
+\renewenvironment{lemma}[1]{\begin{blemma}{#1}}{\end{blemma}}
+\renewenvironment{prop}[1]{\begin{bpropi}{#1}}{\end{bpropi}}
+\fi
+
+\ifptkyr@boxedthm
+\renewenvironment{thm}[1]{\begin{bthm}{#1}}{\end{bthm}}
+\fi
+\ifptkyr@boxedlemma
+\renewenvironment{lemma}[1]{\begin{blemma}{#1}}{\end{blemma}}
+\fi
+\ifptkyr@boxeddefn
+\renewenvironment{defn}[1]{\begin{bdefn}{#1}}{\end{bdefn}}
+\fi
+
+\ifptkyr@boxedlight
+\definecolor{defncol}{HTML}{FF8000} 
+\definecolor{thmcol}{HTML}{000080} 
+\definecolor{lemmcol}{HTML}{990000} 
+\definecolor{lemmcol}{HTML}{ff12ef} 
+\fi
+
+\allowdisplaybreaks
