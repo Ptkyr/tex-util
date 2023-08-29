@@ -1,5 +1,3 @@
-% Primarily based off https://github.com/thaqib0437/uwnotes/blob/main/template/template.sty
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{boxes}
 \RequirePackage{kvoptions}
@@ -16,6 +14,7 @@
 \DeclareBoolOption{boxedlemma}
 \DeclareBoolOption{boxeddefn}
 \DeclareBoolOption{boxedlight}
+\DeclareBoolOption{nonumbers}
 
 \ProcessKeyvalOptions*
 
@@ -26,8 +25,9 @@
 \definecolor{propcol}{HTML}{71169e} 
 
 % Box Theorems
-\newtcbtheorem[number within=section]{bthmi}{Theorem}{
-    width=	\textwidth,
+\ifptkyr@nonumbers
+\newtcbtheorem{bthmi}{Theorem}{
+    width=\textwidth,
     colback=black!2,
     colframe=thmcol,
     colbacktitle=thmcol,
@@ -39,6 +39,21 @@
     boxed title style={sharp corners},
     attach boxed title to top left
 }{bthmi}
+\else 
+\newtcbtheorem[number within=section]{bthmi}{Theorem}{
+    width=\textwidth,
+    colback=black!2,
+    colframe=thmcol,
+    colbacktitle=thmcol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{bthmi}
+\fi
 \newtcbtheorem[use counter from=bthmi,
 number within=section]{bdefi}{Definition}{
     width=\textwidth,
@@ -94,6 +109,25 @@ number within=section]{bdefi}{Definition}{
     {\begin{bpropositioni}{#1}{}}
     {\end{bpropositioni}}
     
+    
+% No numbering
+\newtcbtheorem{nolemmai}{Lemma}{
+    width=\textwidth,
+    colback=white!0,
+    colframe=lemmcol,
+    colbacktitle=lemmcol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{nolemmai}
+\newenvironment{nolemma}[1]
+    {\begin{nolemmai}{#1}{}}
+    {\end{nolemmai}}
+    
 % Boxed options
 \ifptkyr@boxed
 \renewenvironment{thm}[1]{\begin{bthm}{#1}}{\end{bthm}}
@@ -113,10 +147,10 @@ number within=section]{bdefi}{Definition}{
 \fi
 
 \ifptkyr@boxedlight
-\definecolor{defncol}{HTML}{FF8000} 
-\definecolor{thmcol}{HTML}{000080} 
-\definecolor{lemmcol}{HTML}{990000} 
-\definecolor{lemmcol}{HTML}{ff12ef} 
+\definecolor{defncol}{HTML}{008f5d} 
+\definecolor{thmcol}{HTML}{00668f} 
+\definecolor{lemmcol}{HTML}{a3006f} 
+\definecolor{propcol}{HTML}{c95400} 
 \fi
 
 \allowdisplaybreaks

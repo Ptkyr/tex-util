@@ -10,6 +10,10 @@
 {\sum\limits_{#1 = #2}^{#3}}
 \NewDocumentCommand{\prodfrom}{O{n}O{1}O{\infty}}
 {\prod\limits_{#1 = #2}^{#3}}
+\NewDocumentCommand{\setunion}{O{n}O{1}O{\infty}}
+{\bigcup\limits_{#1 = #2}^{#3}}
+\NewDocumentCommand{\setint}{O{n}O{1}O{\infty}}
+{\bigcap\limits_{#1 = #2}^{#3}}
 \newcommand{\sumzero}[1]{\sum\limits_{n = 0}^{\infty}#1}
 \newcommand{\sumone}[1]{\sum\limits_{n = 1}^{\infty}#1}
 \newcommand{\limfty}[1]{\lim\limits_{#1 \to \infty}}
@@ -21,9 +25,39 @@
 \newcommand{\divp}[1]{^{(#1)}}
 \newcommand{\taypol}[3]{T_{#1,#2}(#3)}
 \newcommand{\rempol}[3]{R_{#1,#2}(#3)}
+\NewDocumentCommand{\limto}
+    {O{x}O{\infty}}{\lim\limits_{#1 \to #2}}
 
+% Calculus 3
+\NewDocumentCommand{\sub}{O{x} O{y} O{f} O{x}}{#3_{#4}(#1, #2)}
+\NewDocumentCommand{\gradf}{O{x} O{y} O{f}}{\grad #3 (#1, #2)}
+\NewDocumentCommand{\dder}{O{x} O{y} O{u} O{f}}{D_{\hat{#3}}#4(#1, #2)}
+\NewDocumentCommand{\fat}{O{f} O{a} O{b}}{#1(#2, #3)}
+\NewDocumentCommand{\unitu}{O{u}}{\hat{#1}}
+\NewDocumentCommand{\point}{O{0} O{0}}{(#1, #2)}
+\NewDocumentCommand{\dx}{O{x}}{\,\mathrm{d}#1}
+\NewDocumentCommand{\jacobian}{O{x} O{y} O{u} O{v}}{\df[\partial(#1, #2)][\partial(#3, #4)]}
+\NewDocumentCommand{\pder}{O{f} O{x} O{}}{\frac{\partial^{#3} #1}{\partial {#2}^{#3}}}
 
 % Statistics
 \NewDocumentCommand{\perm}{O{n}O{k}}{#1^{(#2)}}
+\newcommand{\comp}[1]{\overline{#1}}
+\newcommand{\hyp}{\operatorname{hyp}}
+\newcommand{\bin}{\operatorname{Bin}}
+\newcommand{\nbin}{\operatorname{NB}}
+\newcommand{\geo}{\operatorname{Geo}}
+\newcommand{\pois}{\operatorname{Pois}}
+\NewDocumentCommand{\vr}{O{X}}{\operatorname{Var}(#1)}
+\NewDocumentCommand{\pdf}{O{X} O{x}}{f_{#1}(#2)}
+\NewDocumentCommand{\cdf}{O{X} O{x}}{F_{#1}(#2)}
+\NewDocumentCommand{\exv}{O{X}}{E[#1]}
+\NewDocumentCommand{\cov}{ O{X} O{Y} }{\operatorname{Cov}(#1, #2)}
+\NewDocumentCommand{\corr}{ O{X} O{Y} }{\operatorname{corr}(#1, #2)}
+\NewDocumentCommand{\binpdf}{O{n} O{p} O{x}}{\binom{#1}{#3}(#2)^{#3}(1 - #2)^{#1 - #3}}
+\NewDocumentCommand{\hyppdf}{O{N} O{r} O{n} O{x}}{\df[\binom{#2}{#4}\binom{#1 - #2}{#3 - #4}][\binom{#1}{#3}]}
+\NewDocumentCommand{\nbpdf}{O{k} O{p} O{x}}{\binom{#3 + #1 - 1}{#3}(#2)^{#1}(1 - #2)^{#3}}
+\NewDocumentCommand{\geopdf}{O{p} O{x}}{#1(1 - #1)^{#2}}
+\NewDocumentCommand{\poispdf}{ O{\mu} O{x} }
+{e^{-#1}\df[(#1)^{#2}][#2 !]}
 
 \endinput

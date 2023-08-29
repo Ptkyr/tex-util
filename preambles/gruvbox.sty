@@ -1,0 +1,74 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{gruvbox}
+
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{listings}
+\RequirePackage{multicol}
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+ family=ptkyr,
+ prefix=ptkyr@
+}
+
+% All default to false
+\DeclareBoolOption{darkmode}
+
+\ProcessKeyvalOptions*
+
+\newcommand{\code}[1]{\lstinline{#1}}
+
+\lstnewenvironment{codeblock}{}{}
+
+\lstnewenvironment{twosplit}{\lstset{multicols=2}}{}
+
+\definecolor{gbred}{HTML}{fb4934}
+\definecolor{gbgreen}{HTML}{b8bb26}
+\definecolor{gbyellow}{HTML}{fabd2f}
+\definecolor{gbblue}{HTML}{83a598}
+\definecolor{gbpurple}{HTML}{d3869b}
+\definecolor{gbaqua}{HTML}{8ec07c}
+\definecolor{gbfg}{HTML}{ebdbb2}
+\definecolor{gbgray}{HTML}{a89984}
+
+\definecolor{lgbfg}{HTML}{282828}
+\definecolor{lgbred}{HTML}{cc241d}
+\definecolor{lgbgreen}{HTML}{79740e}
+\definecolor{lgbyellow}{HTML}{b56514}
+\definecolor{lgbblue}{HTML}{076678}
+\definecolor{lgbpurple}{HTML}{8f3f71}
+\definecolor{lgbaqua}{HTML}{427b58}
+\definecolor{lgbgray}{HTML}{7c6f64}
+
+\ifptkyr@darkmode
+\lstdefinestyle{mystyle}{
+  commentstyle=\color{gbgray},
+  keywordstyle=\color{gbred},
+  numberstyle=\ttfamily\tiny\color{gbgray},
+  stringstyle=\color{gbgreen},
+  basicstyle=\ttfamily\color{gbfg},
+  captionpos=b,
+  numbers=left,
+  numbersep=3pt,
+  showstringspaces=false
+}
+\else 
+\lstdefinestyle{mystyle}{
+  commentstyle=\color{lgbaqua},
+  keywordstyle=\color{lgbred},
+  numberstyle=\ttfamily\tiny\color{lgbgray},
+  stringstyle=\color{lgbgreen},
+  basicstyle=\ttfamily\color{lgbfg},
+  captionpos=b,
+  numbers=left,
+  numbersep=3pt,
+  showstringspaces=false
+}
+
+%"mystyle" code listing set
+\lstset{
+    language=C++,
+    style=mystyle
+}
+
+\endinput

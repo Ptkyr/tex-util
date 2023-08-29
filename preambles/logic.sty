@@ -2,6 +2,7 @@
 \ProvidesPackage{logic}
 
 \RequirePackage{qtree}
+\RequirePackage{logicproof}
 
 % Operators
 \newcommand{\cond}{\operatorname{if\,\,}}
@@ -11,14 +12,25 @@
 \newcommand{\conddo}{\operatorname{do\,\,}}
 
 % Course-specific symbols
-\newcommand{\liff}{\longleftrightarrow}
-\newcommand{\limp}{\longrightarrow}
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\limp}{\rightarrow}
+\newcommand{\logeq}{\mathrel{\vert\mkern-3mu{=}\mkern-3mu\vert}}
+\newcommand{\piff}{\mathrel{\vert\mkern-3mu{-}\mkern-3mu\vert}}
+\newcommand{\proves}{\vdash}
+\newcommand{\plang}{\mathcal{L}^p}
+\newcommand{\formlp}{\operatorname{Form}(\mathcal{L}^p)}
+\newcommand{\atomlp}{\operatorname{Atom}(\mathcal{L}^p)}
+\newcommand{\fol}{\operatorname{Form}(\mathcal{L})}
+\newcommand{\afol}{\operatorname{Atom}(\mathcal{L})}
+\newcommand{\tfol}{\operatorname{Term}(\mathcal{L})}
+\newcommand{\sfol}{\operatorname{Sent}(\mathcal{L})}
 
+% General Logic
 \NewDocumentCommand{\hoare}{O{P}O{S}O{Q}}
 {\{#1\}\hspace{0.2em} #2 \hspace{0.2em}\space\{#3\}}
-\newcommand{\plang}{\mathcal{L}^p}
-\newcommand{\plogic}{\operatorname{Form}(\mathcal{L}^p)}
+\newcommand{\phrase}[1]{\text{``#1"}}
 
+% Logical Arguments
 \ExplSyntaxOn
 \clist_new:N \l_larg_clist
 \NewDocumentCommand{\larg}{O{\\}mm}{
