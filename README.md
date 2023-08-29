@@ -1,7 +1,11 @@
 # Preambles
-A collection of LaTeX preambles
-- **base.sty** contains some core math packages as well as useful universal commands
-- **cats.sty** contains some **ca**lculus/sta**ts** macros for integrals, series, probability
-- **linalg.sty** contains some linear algebra macros for matrices, vectors, etc
-- **boxes.sty** contains some tcolorbox environments
-- **logic.sty** contains some commands for logicians
+A collection of LaTeX preambles, that roughly serve the following purposes:
+
+- **base.sty:** core math packages, formatting, useful universal commands
+- **cats.sty:** *ca*lculus/sta*ts* macros for integrals, series, probability
+- **linalg.sty:** linear algebra macros for matrices, vectors, etc
+- **boxes.sty:** tcolorbox environments
+- **logic.sty:** commands for logicians
+- **gruvbox.sty:** gruvbox styling for lstlistings
+
+and some others I don't use that much but are just here.
