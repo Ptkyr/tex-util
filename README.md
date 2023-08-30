@@ -9,3 +9,5 @@ A collection of LaTeX preambles, that roughly serve the following purposes:
 - **gruvbox.sty:** gruvbox styling for lstlistings
 
 and some others I don't use that much but are just here.
+
+Also throwing my UltiSnips snippets in here because I don't want to lose them.
