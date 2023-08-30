@@ -5,11 +5,11 @@
 
 % Operators
 \newcommand{\setspan}{\operatorname{Span}}
-\newcommand{\nullity}{\operatorname{nullity}}
+\newcommand{\nllty}{\operatorname{nullity}}
 \newcommand{\rref}{\operatorname{RREF}}
-\newcommand{\colspace}{\operatorname{Col}}
-\newcommand{\rowspace}{\operatorname{Row}}
-\newcommand{\nullspace}{\operatorname{Null}}
+\newcommand{\colsp}{\operatorname{Col}}
+\newcommand{\rowsp}{\operatorname{Row}}
+\newcommand{\nllsp}{\operatorname{Null}}
 \newcommand{\diag}{\operatorname{diag}}
 \newcommand{\range}{\operatorname{Range}}
 \newcommand{\kernel}{\operatorname{Ker}}
@@ -77,9 +77,16 @@
 \end{bmatrix}}
 
 % Setup for row reduction
-\newlength{\rrwidth}
-\setlength{\rrwidth}{6em}
-\newcommand{\rrarrow}[1]{\xrightarrow{\mathmakebox[\rrwidth]{#1}}}
+\newlength{\rrArrowWidth}
+\setlength{\rrArrowWidth}{6em}
+\newcommand{\rrstep}[1]{\xrightarrow{\mathmakebox[\rrArrowWidth]{#1}}}
+\newcommand{\rrend}{\phantom{\to}}
+
+\newcommand{\rrline}{%
+    \begin{aligned}%
+        \rightarrow%
+    \end{aligned} \\\\%
+}
 
 \newlength{\mwidth}
 \setlength{\mwidth}{16pt}
@@ -103,7 +110,8 @@
 \newcommand{\setam}[2]{\begin{setamatrix}{#1} #2 \end{setamatrix}}
 
 \newenvironment{setbmatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1}{C}@{}}}{\end{array}\right]}
-\newcommand{\setbm}[2]{\begin{setbmatrix}{#1} #2 \end{setbmatrix}}
+
+\NewDocumentCommand{\setbm}{O{3} m}{\begin{setbmatrix}{#1} #2 \end{setbmatrix}}
 
 \newenvironment{invmatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1}{C}|@{}*{\numexpr#1}{C}@{}}}{\end{array}\right]}
 \newcommand{\setinv}[2]{\begin{invmatrix}{#1} #2 \end{invmatrix}}
