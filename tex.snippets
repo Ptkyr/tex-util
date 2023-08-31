@@ -174,17 +174,17 @@ endsnippet
 # </environments>
 
 # formatting
-snippet med "medbreak" b
+snippet med "medbreak" bA
 \medbreak
 $0
 endsnippet
 
-snippet big "bigbreak" b
+snippet big "bigbreak" bA
 \bigbreak
 $0
 endsnippet
 
-snippet np "newpage" b
+snippet np "newpage" bA
 \newpage
 $0
 endsnippet
@@ -195,11 +195,11 @@ $0
 endsnippet
 
 snippet bf "bold" w
-\textbf{$1} $0
+\textbf{$1}$0
 endsnippet
 
 snippet it "bold" w
-\emph{$1} $0
+\emph{$1}$0
 endsnippet
 
 context "math()"
@@ -295,10 +295,36 @@ snippet set "set" w
 endsnippet
 # </between>
 
+# frac
+context "math()"
+snippet df "Display Fraction" iA
+\\dfrac{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet / "Fraction" i
+\\frac{${VISUAL}}{$1}$0
+endsnippet
+
+context "math()"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+# </frac>
+
 priority 100
 context "math()"
-snippet "([A-Z][A-Z])" "mathbb" riA
-\mathbb{`!p snip.rv=match.group(1)[0]`}
+snippet "(\?)([A-Z])" "mathbb" riA
+\mathbb{`!p snip.rv=match.group(2)`}
+endsnippet
+
+context "math()"
+snippet mcal "mathcal" iA
+\mathcal{$1}$0
 endsnippet
 
 context "math()"
@@ -324,28 +350,13 @@ snippet =< "implied by" Ai
 \impliedby
 endsnippet
 
-context "math()"
-snippet df "Display Fraction" iA
-\\dfrac{$1}{$2}$0
-endsnippet
-
-context "math()"
-snippet // "Fraction" iA
-\\frac{$1}{$2}$0
-endsnippet
-
-snippet / "Fraction" i
-\\frac{${VISUAL}}{$1}$0
-endsnippet
-
 priority 100
 snippet ... "ldots" iA
 \ldots
 endsnippet
 
 snippet == "equals" iA
-&= $1 \\\\
-$0
+&= $1 \\\\$0
 endsnippet
 
 snippet != "equals" iA
@@ -442,11 +453,6 @@ endsnippet
 
 snippet R0+ "R0+" iA
 \\R_0^+
-endsnippet
-
-context "math()"
-snippet mcal "mathcal" iA
-\mathcal{$1}$0
 endsnippet
 
 snippet lll "l" iA
@@ -611,13 +617,35 @@ endsnippet
 
 priority 100
 context "math()"
-snippet "([0a-zA-Z])vv" "v" riA
+snippet "([0a-zA-Z])vv" "vec" riA
 \vv{`!p snip.rv=match.group(1)`}
 endsnippet
 
 context "math()"
 snippet '(?<!i)sts' "text subscript" irA
 _\text{$1} $0
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])(\d)' "auto subscript" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+priority 100
+context "math()"
+snippet "(.)over" "overset" riA
+\overset{$1}{`!p snip.rv=match.group(1)`} $0
+endsnippet
+
+priority 100
+context "math()"
+snippet "(.)under" "underset" riA
+\underset{$1}{`!p snip.rv=match.group(1)`} $0
 endsnippet
 # </postscripts>
 
@@ -632,69 +660,5 @@ snippet reln "Relative Tikz node" b
 $0
 endsnippet
 # </TikZ>
-
-# This does something important, idk what exactly
-#  but in particular it makes x1 -> x_1 work
-context "math()"
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$1}$0
-endsnippet
-
-priority 1000
-context "math()"
-snippet '^.*\)/' "() frac" wrA
-`!p
-stripped = match.string[:-1]
-depth = 0
-i = len(stripped) - 1
-while True:
-	if stripped[i] == ')': depth += 1
-	if stripped[i] == '(': depth -= 1
-	if depth == 0: break;
-	i-=1
-snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
-`{$1}$0
-endsnippet
-
-context "math()"
-snippet '([A-Za-z])(\d)' "auto subscript" wrA
-`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
-endsnippet
-
-context "math()"
-snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
-`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
-endsnippet
-
-snippet sympy "sympyblock " w
-sympy $1 sympy$0
-endsnippet
-
-priority 10000
-snippet 'sympy(.*)sympy' "sympy" wr
-`!p
-from sympy import *
-x, y, z, t = symbols('x y z t')
-k, m, n = symbols('k m n', integer=True)
-f, g, h = symbols('f g h', cls=Function)
-init_printing()
-snip.rv = eval('latex(' + match.group(1).replace('\\', '').replace('^', '**').replace('{', '(').replace('}', ')') + ')')
-`
-endsnippet
-
-priority 1000
-snippet math "mathematicablock" w
-math $1 math$0
-endsnippet
-
-priority 10000
-snippet 'math(.*)math' "math" wr
-`!p
-import subprocess
-code = match.group(1)
-code = 'ToString[' + code + ', TeXForm]'
-snip.rv = subprocess.check_output(['wolframscript', '-code', code])
-`
-endsnippet
 
 # vim:ft=snippets
