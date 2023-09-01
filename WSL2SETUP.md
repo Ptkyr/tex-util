@@ -27,6 +27,7 @@ sudo apt install `sudo apt --assume-no install texlive-full | \
         awk '/The following additional packages will be installed/{f=1;next} /Suggested packages/{f=0} f' | \
                 tr ' ' '\n' | grep -vP 'doc$' | grep -vP 'texlive-lang' | grep -vP 'latex-cjk' | tr '\n' ' '`
 ```
+Note that any custom package `.sty` files should go in `~/texmf/tex/latex/local/`.
 
 3. Install [vim-plug](https://github.com/junegunn/vim-plug#unix)
 ```
@@ -34,7 +35,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-4. Install [UltiSnips et al.](https://github.com/gillescastel/latex-snippets) in `~/.vimrc`
+4. Set up [UltiSnips et al.](https://github.com/gillescastel/latex-snippets) in `~/.vimrc`
 ```
 // Top of file
 call plug#begin()
@@ -72,7 +73,11 @@ call plug#end()
 
 6. Install [`VcXsrv`](https://sourceforge.net/projects/vcxsrv/) and in `xlaunch.exe` check "Disable access control." Save this and throw it into `shell:startup`. May also need to let `VcXsrv` through Windows Firewall.
 
-Throw `export DISPLAY="$(grep nameserver /etc/resolv.conf | sed 's/nameserver //'):0"` into your `~/.bashrc` to enable X-forwarding (i.e. get `zathura` to work).
+7. Throw 
+```
+export DISPLAY="$(grep nameserver /etc/resolv.conf | sed 's/nameserver //'):0"
+```
+into `~/.bashrc` to enable X-forwarding (i.e. get `zathura` to work).
 
 7. Off to the races? General workflow is:
 * Run `pvc x.tex`
