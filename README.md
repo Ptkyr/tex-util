@@ -10,4 +10,4 @@ A collection of LaTeX preambles, that roughly serve the following purposes:
 
 and some others I don't use that much but are just here.
 
-Also throwing my UltiSnips snippets in here because I don't want to lose them.
+Also dumped my latex snippets and instructions for my note-taking setup at WSL2SETUP.md
