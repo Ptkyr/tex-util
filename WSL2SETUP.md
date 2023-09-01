@@ -37,10 +37,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 4. Set up [UltiSnips et al.](https://github.com/gillescastel/latex-snippets) in `~/.vimrc`
 ```
-// Top of file
+" Top of file
 call plug#begin()
 
-<Whatever, probably nothing>
+" <Whatever, probably nothing>
 
 Plug 'sirver/ultisnips'
     let g:UltiSnipsExpandTrigger = '<tab>'
@@ -61,7 +61,7 @@ setlocal spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-<Whatever, probably nothing>
+" <Whatever, probably nothing>
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
