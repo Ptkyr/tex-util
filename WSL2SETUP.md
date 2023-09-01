@@ -40,8 +40,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 " Top of file
 call plug#begin()
 
-" <Whatever, probably nothing>
-
 Plug 'sirver/ultisnips'
     let g:UltiSnipsExpandTrigger = '<tab>'
     let g:UltiSnipsJumpForwardTrigger = '<tab>'
@@ -61,13 +59,11 @@ setlocal spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-" <Whatever, probably nothing>
-
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
 
-<Rest of .vimrc>
+"""" Rest of .vimrc vvvv
 ```
 5. Copy `tex.snippets` to `~/.vim/(bundle/vim-snippets/)?Ultisnips`
 
