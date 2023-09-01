@@ -67,7 +67,7 @@ call plug#end()
 ```
 5. Copy `tex.snippets` to `~/.vim/(bundle/vim-snippets/)?Ultisnips`
 
-6. Install [`VcXsrv`](https://sourceforge.net/projects/vcxsrv/) and in `xlaunch.exe` check "Disable access control." Save this and throw it into `shell:startup`. May also need to let `VcXsrv` through Windows Firewall.
+6. Install [`VcXsrv`](https://sourceforge.net/projects/vcxsrv/) and in `xlaunch.exe` check "Disable access control." Save the config and throw it into `shell:startup`. May also need to let `VcXsrv` through Windows Firewall.
 
 7. Throw 
 ```
