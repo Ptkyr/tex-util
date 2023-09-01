@@ -82,4 +82,4 @@ into `~/.bashrc` to enable X-forwarding (i.e. get `zathura` to work).
 8. Off to the races? General workflow is:
 * Run `pvc x.tex`
 * Open another terminal window
-* Edit the file in the new window
+* Edit `x.tex` in the new window
