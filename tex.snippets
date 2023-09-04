@@ -51,7 +51,8 @@ endsnippet
 snippet dm "Math" wA
 \[
 ${1:${VISUAL}}
-.\] $0
+.\] 
+$0
 endsnippet
 # </math mode>
 
@@ -146,6 +147,14 @@ snippet remk "Remark" b
 \begin{remk}
 	$1
 \end{remk}
+\smallbreak
+$0
+endsnippet
+
+snippet exmp "Example" b
+\begin{exmp}
+	$1
+\end{exmp}
 \smallbreak
 $0
 endsnippet
@@ -350,8 +359,14 @@ context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
+
+snippet part "d/dx" w
+\frac{\partial ${1:f}}{\partial ${2:x}} $0
+endsnippet
 # </frac>
 
+# Note: not using ([A-Z][A-Z]) as it conflicts with potential
+# LHR oversets or LL(1)	or SLR(1) etc.
 priority 100
 context "math()"
 snippet "(\?)([A-Z])" "mathbb" riA
@@ -387,38 +402,13 @@ snippet imp "implies" iA
 \implies
 endsnippet
 
-snippet =< "implied by" iA
-\impliedby
-endsnippet
-
-priority 100
-snippet ... "ldots" iA
-\ldots
-endsnippet
-
 snippet mod "modulo" iA
 \pmod{$1}$0
-endsnippet
-
-snippet =- "equiv" iA
-\equiv 
-endsnippet
-
-snippet == "equals" iA
-&= $1 \\\\$0
-endsnippet
-
-snippet != "equals" iA
-\neq 
 endsnippet
 
 context "math()"
 snippet conj "conjugate" iA
 \overline{$1}$0
-endsnippet
-
-snippet part "d/dx" w
-\frac{\partial ${1:f}}{\partial ${2:x}} $0
 endsnippet
 
 context "math()"
@@ -439,11 +429,6 @@ endsnippet
 context "math()"
 snippet td "to the ... power" iA
 ^{$1}$0
-endsnippet
-
-context "math()"
-snippet rd "to the ... power" iA
-^{($1)}$0
 endsnippet
 
 context "math()"
@@ -477,7 +462,7 @@ snippet rij "mrij" i
 endsnippet
 
 context "math()"
-snippet ex "geq" i
+snippet ex "exists" i
 \exists 
 endsnippet
 
@@ -534,6 +519,61 @@ snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec)' "otherfunc" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
+context "math()"
+snippet inv "inverse" iA
+^{-1}
+endsnippet
+
+context "math()"
+snippet compl "complement" iA
+^{c}
+endsnippet
+
+context "math()"
+snippet cc "subset" Ai
+\subseteq 
+endsnippet
+
+snippet cc "code" w
+\code{$1}$0 
+endsnippet
+
+context "math()"
+snippet nin "not in " iA
+\not\in 
+endsnippet
+
+context "math()"
+snippet inn "in " iA
+\in 
+endsnippet
+
+snippet empty "emptyset" iA
+\varnothing
+endsnippet
+
+# special symbols
+snippet =< "implied by" iA
+\impliedby
+endsnippet
+
+priority 100
+snippet ... "ldots" iA
+\ldots
+endsnippet
+
+snippet =- "equiv" iA
+\equiv 
+endsnippet
+
+snippet == "equals" iA
+&= $1 \\\\$0
+endsnippet
+
+snippet != "equals" iA
+\neq 
+endsnippet
+
 priority 100
 context "math()"
 snippet -> "to" iA
@@ -552,56 +592,31 @@ snippet !> "mapsto" iA
 endsnippet
 
 context "math()"
-snippet inv "inverse" iA
-^{-1}
-endsnippet
-
-context "math()"
-snippet compl "complement" iA
-^{c}
-endsnippet
-
-context "math()"
 snippet \\\ "setminus" iA
 \setminus
 endsnippet
 
+context "math()"
 snippet >> ">>" iA
 \gg
 endsnippet
 
+context "math()"
 snippet << "<<" iA
 \ll
 endsnippet
 
+context "math()"
 snippet ~~ "~" iA
 \sim 
 endsnippet
 
+context "math()"
 snippet || "mid" iA
 \mid 
 endsnippet
-
-context "math()"
-snippet cc "subset" Ai
-\subseteq 
-endsnippet
-
-snippet nin "not in " iA
-\not\in 
-endsnippet
-
-context "math()"
-snippet inn "in " iA
-\in 
-endsnippet
-
 snippet ;; "tablesep" iA
  & $0
-endsnippet
-
-snippet empty "emptyset" iA
-\varnothing
 endsnippet
 
 snippet <! "normal" iA
@@ -611,6 +626,7 @@ endsnippet
 snippet <> "hokje" iA
 \diamond 
 endsnippet
+# </special symbols>
 
 snippet SI "SI" iA
 \SI{$1}{$2}
@@ -619,7 +635,7 @@ endsnippet
 # postscripts
 priority 10
 context "math()"
-snippet "bar" "bar" riA
+snippet "bar" "bar" ri
 \overline{$1}$0
 endsnippet
 
@@ -631,7 +647,7 @@ endsnippet
 
 priority 10
 context "math()"
-snippet "hat" "hat" riA
+snippet "hat" "hat" ri
 \hat{$1}$0
 endsnippet
 
