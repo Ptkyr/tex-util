@@ -34,7 +34,20 @@
 \RequirePackage{enumerate}
 \RequirePackage[T1]{fontenc}
 
+% For InkScape nonsense
+\RequirePackage{import}
+\RequirePackage{pdfpages}
+\RequirePackage{transparent}
+\RequirePackage{xcolor}
 
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% Useful commands
 \NewDocumentCommand{\expf}{O{x}}{\exp\left(#1\right)}
 \NewDocumentCommand{\mbb}{O{F}O{n}}{\mathbb{#1}^{#2}}
 \NewDocumentCommand{\f}{O{1}O{2}}{\frac{#1}{#2}}

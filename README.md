@@ -10,4 +10,4 @@ A collection of LaTeX preambles, that roughly serve the following purposes:
 
 and some others I don't use that much but are just here.
 
-Also dumped my [tex.snippets](tex.snippets) and instructions for my note-taking setup at [WSL2SETUP.md](WSL2SETUP.md)
+Also dumped my [tex.snippets](tex.snippets) and instructions for my vim + latex + zathura setup at [WSL2SETUP.md](WSL2SETUP.md)

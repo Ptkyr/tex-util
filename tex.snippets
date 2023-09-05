@@ -236,7 +236,7 @@ snippet np "newpage" bA
 $0
 endsnippet
 
-snippet qwq "question number" bA
+snippet qq "question number" bA
 \textbf{Question $1.}
 $0
 endsnippet
@@ -252,6 +252,10 @@ endsnippet
 context "math()"
 snippet tt "text" iA
 \text{$1}$0
+endsnippet
+
+snippet cc "code" w
+\code{$1}$0 
 endsnippet
 # </formatting>
 
@@ -308,19 +312,15 @@ snippet floor "floor" iA
 \left\lfloor $1 \right\rfloor$0
 endsnippet
 
-snippet lr "left( right)" i
-\left(${1:${VISUAL}} \right) $0
+snippet lr "left( right)" iA
+\left(${1:${VISUAL}}\right) $0
 endsnippet
 
-snippet lr| "left| right|" iA
-\left|${1:${VISUAL}} \right| $0
+snippet abs "left| right|" iA
+\left|${1:${VISUAL}}\right| $0
 endsnippet
 
-snippet lrb "left[ right]" iA
-\left[${1:${VISUAL}}\right] $0
-endsnippet
-
-snippet lra "leftangle rightangle" iA
+snippet ipr "leftangle rightangle" iA
 \left\langle ${1:${VISUAL}}\right\rangle$0
 endsnippet
 
@@ -341,27 +341,23 @@ endsnippet
 # </between>
 
 # frac
+#context "math()"
+#snippet df "Display Fraction" iA
+#\\dfrac{$1}{$2}$0
+#endsnippet
+
 context "math()"
-snippet df "Display Fraction" iA
+snippet // "Fraction" iA
 \\dfrac{$1}{$2}$0
 endsnippet
 
 context "math()"
-snippet // "Fraction" iA
-\\frac{$1}{$2}$0
-endsnippet
-
-snippet / "Fraction" i
-\\frac{${VISUAL}}{$1}$0
-endsnippet
-
-context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+\\dfrac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 snippet part "d/dx" w
-\frac{\partial ${1:f}}{\partial ${2:x}} $0
+\dfrac{\partial ${1:f}}{\partial ${2:x}} $0
 endsnippet
 # </frac>
 
@@ -369,37 +365,18 @@ endsnippet
 # LHR oversets or LL(1)	or SLR(1) etc.
 priority 100
 context "math()"
-snippet "(\?)([A-Z])" "mathbb" riA
-\mathbb{`!p snip.rv=match.group(2)`}
+snippet "([A-Z])(\?)" "mathbb" riA
+\mathbb{`!p snip.rv=match.group(1)`}
 endsnippet
 
 context "math()"
-snippet "(s)([ijknm])" "subn" riA
+snippet "(-)([ijknm])" "subn" riA
 _`!p snip.rv = match.group(2)`
 endsnippet
 
 context "math()"
 snippet mcal "mathcal" iA
 \mathcal{$1}$0
-endsnippet
-
-context "math()"
-snippet bkwd "backwards iff" iA
-(\Leftarrow)
-endsnippet
-
-context "math()"
-snippet fwd "forwards iff" iA
-(\Rightarrow)
-endsnippet
-
-context "math()"
-snippet iff "iff" iA
-\iff
-endsnippet
-
-snippet imp "implies" iA
-\implies
 endsnippet
 
 snippet mod "modulo" iA
@@ -432,6 +409,11 @@ snippet td "to the ... power" iA
 endsnippet
 
 context "math()"
+snippet nd "nth derivative" iA
+^{(${1:n})}$0
+endsnippet
+
+context "math()"
 snippet __ "subscript" iA
 _{$1}$0
 endsnippet
@@ -457,32 +439,13 @@ snippet oot "\otimes" iA
 endsnippet
 
 context "math()"
-snippet rij "mrij" i
-(${1:x}_${2:n})_{${3:$2}\\in${4:\\N}}$0
-endsnippet
-
-context "math()"
-snippet ex "exists" i
+snippet "ex" "exists" i
 \exists 
 endsnippet
 
 context "math()"
 snippet fa "forall" i
 \forall 
-endsnippet
-
-context "math()"
-snippet R0+ "R0+" iA
-\mathbb{R}_0^+
-endsnippet
-
-snippet lll "l" iA
-\ell
-endsnippet
-
-context "math()"
-snippet lm "lambda" iA
-\lambda
 endsnippet
 
 context "math()"
@@ -507,12 +470,6 @@ snippet '(?<!\\)(sin|cos|tan|cot|csc|sec|ln|log|exp)' "functions" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
-priority 100
-context "math()"
-snippet '(?<!\\)(lambda|alpha|beta|gamma|delta|theta|omega)' "greek" rwA
-\\`!p snip.rv = match.group(1)`
-endsnippet
-
 priority 200
 context "math()"
 snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec)' "otherfunc" rwA
@@ -529,13 +486,10 @@ snippet compl "complement" iA
 ^{c}
 endsnippet
 
+# Note: does not conflict with \code
 context "math()"
 snippet cc "subset" Ai
 \subseteq 
-endsnippet
-
-snippet cc "code" w
-\code{$1}$0 
 endsnippet
 
 context "math()"
@@ -548,8 +502,27 @@ snippet inn "in " iA
 \in 
 endsnippet
 
-snippet empty "emptyset" iA
+snippet emp "emptyset" iA
 \varnothing
+endsnippet
+
+context "math()"
+snippet bkwd "backwards iff" iA
+(\Leftarrow)
+endsnippet
+
+context "math()"
+snippet fwd "forwards iff" iA
+(\Rightarrow)
+endsnippet
+
+context "math()"
+snippet iff "iff" iA
+\iff
+endsnippet
+
+snippet imp "implies" iA
+\implies
 endsnippet
 
 # special symbols
@@ -570,14 +543,8 @@ snippet == "equals" iA
 &= $1 \\\\$0
 endsnippet
 
-snippet != "equals" iA
+snippet -= "not equals" iA
 \neq 
-endsnippet
-
-priority 100
-context "math()"
-snippet -> "to" iA
-\to 
 endsnippet
 
 priority 200
@@ -612,17 +579,19 @@ snippet ~~ "~" iA
 endsnippet
 
 context "math()"
-snippet || "mid" iA
+snippet | "mid" iA
 \mid 
 endsnippet
 snippet ;; "tablesep" iA
  & $0
 endsnippet
 
+context "math()"
 snippet <! "normal" iA
 \triangleleft 
 endsnippet
 
+context "math()"
 snippet <> "hokje" iA
 \diamond 
 endsnippet
@@ -696,6 +665,67 @@ snippet "(.)under" "underset" riA
 \underset{$1}{`!p snip.rv=match.group(1)`} $0
 endsnippet
 # </postscripts>
+
+# greek
+snippet lll "l" iA
+\ell
+endsnippet
+
+context "math()"
+snippet "a;" "alpha" riA
+\alpha
+endsnippet
+
+context "math()"
+snippet "b;" "beta" riA
+\beta
+endsnippet
+
+context "math()"
+snippet "g;" "gamma" riA
+\gamma
+endsnippet
+
+context "math()"
+snippet "d;" "delta" riA
+\delta
+endsnippet
+
+context "math()"
+snippet "e;" "varepsilon" riA
+\varepsilon
+endsnippet
+
+context "math()"
+snippet "z;" "zeta" riA
+\zeta
+endsnippet
+
+context "math()"
+snippet "t;" "theta" riA
+\theta
+endsnippet
+
+context "math()"
+snippet "l;" "lambda" riA
+\lambda
+endsnippet
+
+context "math()"
+snippet "o;" "omega" riA
+\omega
+endsnippet
+
+context "math()"
+snippet "p;" "varphi" riA
+\varphi
+endsnippet
+
+context "math()"
+snippet pi "pi" iA
+\pi
+endsnippet
+# </greek>
 
 # TikZ
 snippet node "Tikz node" b
