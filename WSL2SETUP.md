@@ -6,7 +6,7 @@ Based on this [fantastic blog post](https://castel.dev/post/lecture-notes-1/). R
 ```
 sudo apt-get install zathura latexmk
 ```
-Configure things in [`~/.config/zathura/zathurarc`](https://manpages.ubuntu.com/manpages/trusty/man5/zathurarc.5.html) and `~/.latexmkrc` respectively. In particular, you might want the latter to have
+Configure things in [`~/.config/zathura/zathurarc`](https://manpages.ubuntu.com/manpages/trusty/man5/zathurarc.5.html) and `~/.config/latexmk/latexmkrc` respectively. In particular, you might want the latter to have
 ```
 $emulate_aux = 1;
 $out_dir = 'output';
