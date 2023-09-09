@@ -5,6 +5,7 @@
 
 % Operators
 \newcommand{\spn}{\operatorname{Span}}
+\newcommand{\codim}{\operatorname{codim}}
 \newcommand{\nllty}{\operatorname{nullity}}
 \newcommand{\rref}{\operatorname{RREF}}
 \newcommand{\colsp}{\operatorname{Col}}
@@ -103,11 +104,11 @@ _{\mathcal{#1}}}
 \newcommand{\commat}[1]{\begin{commatrix} #1 \end{commatrix}}
 
 \newenvironment{amatrix}[2]{\left[\begin{array}{*{\numexpr#1}{c}|*{\numexpr#2}c}}{\end{array}\right]}
-\NewDocumentCommand{\augmat}{m O{1} m}
+\NewDocumentCommand{\augmat}{O{3} O{1} m}
 {\begin{amatrix}{#1}{#2} #3 \end{amatrix}}
 
 \newenvironment{setamatrix}[2]{\left[\begin{array}{@{}*{\numexpr#1}{C}|*{\numexpr#2}{C}@{}}}{\end{array}\right]}
-\NewDocumentCommand{\setam}{m O{1} m}
+\NewDocumentCommand{\setam}{O{3} O{1} m}
 {\begin{setamatrix}{#1}{#2} #3 \end{setamatrix}}
 
 \newenvironment{setbmatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1}{C}@{}}}{\end{array}\right]}
@@ -115,5 +116,8 @@ _{\mathcal{#1}}}
 
 \newenvironment{invmatrix}[1]{\left[\begin{array}{@{}*{\numexpr#1}{C}|@{}*{\numexpr#1}{C}@{}}}{\end{array}\right]}
 \newcommand{\setinv}[2]{\begin{invmatrix}{#1} #2 \end{invmatrix}}
+
+% CO macros
+\newcommand{\lpst}{\text{s.t.}\quads}
 
 \endinput

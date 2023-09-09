@@ -29,7 +29,7 @@ snippet template "Basic template" b
 ]{boxes}
 
 \begin{document}
-	$0
+$0
 \end{document}
 endsnippet
 
@@ -66,6 +66,7 @@ endsnippet
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
 	\centering
+	\def\arraystretch{1.2}
 	\caption{${2:caption}}
 	\label{tab:${3:label}}
 	\begin{tabular}{${5:c}}
@@ -103,6 +104,10 @@ snippet item "Itemize" bA
 \end{itemize}
 endsnippet
 
+snippet i "item" i
+\\item 
+endsnippet
+
 snippet desc "Description" b
 \begin{description}
 	\item[$1] $0
@@ -115,35 +120,35 @@ snippet ali "Align" bA
 .\end{align*}
 endsnippet
 
-snippet thm "Theorem" b
+snippet thm "Theorem" bA
 \begin{thm}{$1}
 	$2
 \end{thm}
 $0
 endsnippet
 
-snippet lemma "Lemma" b
+snippet lemma "Lemma" bA
 \begin{lemma}{$1}
 	$2
 \end{lemma}
 $0
 endsnippet
 
-snippet defn "Definition" b
+snippet defn "Definition" bA
 \begin{defn}{$1}
 	$2
 \end{defn}
 $0
 endsnippet
 
-snippet prop "Proposition" b
+snippet prop "Proposition" bA
 \begin{prop}{$1}
 	$2
 \end{prop}
 $0
 endsnippet
 
-snippet remk "Remark" b
+snippet remk "Remark" bA
 \begin{remk}
 	$1
 \end{remk}
@@ -151,7 +156,7 @@ snippet remk "Remark" b
 $0
 endsnippet
 
-snippet exmp "Example" b
+snippet exmp "Example" bA
 \begin{exmp}
 	$1
 \end{exmp}
@@ -242,7 +247,7 @@ $0
 endsnippet
 
 snippet bf "bold" w
-\textbf{$1}$0
+\textbf{${1:${VISUAL}}}$0
 endsnippet
 
 snippet it "bold" w
@@ -257,6 +262,18 @@ endsnippet
 snippet cc "code" w
 \code{$1}$0 
 endsnippet
+
+snippet blk "codeblock" bA
+\begin{codeblock}
+$1
+\end{codeblock}
+$0
+endsnippet
+
+# For vectors with dfracs to look okay
+snippet "\\\\f" "frac newline" riA
+\\\\[9pt]
+endsnippet
 # </formatting>
 
 # limits
@@ -268,35 +285,52 @@ endsnippet
 
 priority 300
 context "math()"
-snippet iint "integral" wA
+snippet idint "integral" wA
 \int ${2:${VISUAL}} \\,d${1:x} $0
 endsnippet
 
-snippet sum "sum" w
+context "math()"
+snippet "(?<!\\)min" "min" rwA
+\min\limits_{${1:\vv{x} \in ${2:\mathbb{R}^n}}}
+endsnippet
+
+context "math()"
+snippet "(?<!\\)max" "max" rwA
+\max\limits_{${1:\vv{x} \in ${2:\mathbb{R}^n}}}
+endsnippet
+
+context "math()"
+snippet sum "sum" wA
 \sum\limits_{${1:i}=${2:0}}^{${3:\infty}} ${4:x^i}
 endsnippet
 
-snippet taylor "taylor" w
+context "math()"
+snippet taylor "taylor" wA
 \sum\limits_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x - a)^{$1} $0
 endsnippet
 
+context "math()"
 snippet lim "limit" w
 \lim\limits_{${1:n} \to ${2:\infty}} 
 endsnippet
 
+context "math()"
 snippet limsup "limsup" w
 \limsup\limits_{${1:n} \to ${2:\infty}} 
 endsnippet
 
-snippet prod "product" w
+context "math()"
+snippet prod "product" wA
 \prod\limits_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
-snippet bigcup "bigcup" w
+context "math()"
+snippet bigcup "bigcup" wA
 \bigcup\limits_{${1:i \in ${2: I}}} $0
 endsnippet
 
-snippet bigcap "bigcap" w
+context "math()"
+snippet bigcap "bigcap" wA
 \bigcap\limits_{${1:i \in ${2: I}}} $0
 endsnippet
 # </limits>
@@ -312,14 +346,17 @@ snippet floor "floor" iA
 \left\lfloor $1 \right\rfloor$0
 endsnippet
 
+context "math()"
 snippet lr "left( right)" iA
 \left(${1:${VISUAL}}\right) $0
 endsnippet
 
+context "math()"
 snippet abs "left| right|" iA
 \left|${1:${VISUAL}}\right| $0
 endsnippet
 
+context "math()"
 snippet ipr "leftangle rightangle" iA
 \left\langle ${1:${VISUAL}}\right\rangle$0
 endsnippet
@@ -365,13 +402,28 @@ endsnippet
 # LHR oversets or LL(1)	or SLR(1) etc.
 priority 100
 context "math()"
-snippet "([A-Z])(\?)" "mathbb" riA
+snippet "([A-Z0])(\:)" "mathbb" riA
 \mathbb{`!p snip.rv=match.group(1)`}
 endsnippet
 
 context "math()"
-snippet "(-)([ijknm])" "subn" riA
+snippet "(s)([xynm])" "subn" riA
 _`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet ii "subi" iA
+_i
+endsnippet
+
+context "math()"
+snippet jj "subj" iA
+_j
+endsnippet
+
+context "math()"
+snippet kk "subk" iA
+_k
 endsnippet
 
 context "math()"
@@ -409,8 +461,8 @@ snippet td "to the ... power" iA
 endsnippet
 
 context "math()"
-snippet nd "nth derivative" iA
-^{(${1:n})}$0
+snippet "([fgh])nd" "nth derivative" riA
+`!p snip.rv = match.group(1)`^{(${1:n})}$0
 endsnippet
 
 context "math()"
@@ -439,7 +491,7 @@ snippet oot "\otimes" iA
 endsnippet
 
 context "math()"
-snippet "ex" "exists" i
+snippet ex "exists" i
 \exists 
 endsnippet
 
@@ -502,6 +554,7 @@ snippet inn "in " iA
 \in 
 endsnippet
 
+context "math()"
 snippet emp "emptyset" iA
 \varnothing
 endsnippet
@@ -521,11 +574,13 @@ snippet iff "iff" iA
 \iff
 endsnippet
 
+context "math()"
 snippet imp "implies" iA
 \implies
 endsnippet
 
 # special symbols
+context "math()"
 snippet =< "implied by" iA
 \impliedby
 endsnippet
@@ -582,7 +637,7 @@ context "math()"
 snippet | "mid" iA
 \mid 
 endsnippet
-snippet ;; "tablesep" iA
+snippet -- "tablesep" iA
  & $0
 endsnippet
 
@@ -672,52 +727,52 @@ snippet lll "l" iA
 endsnippet
 
 context "math()"
-snippet "a;" "alpha" riA
+snippet a; "alpha" iA
 \alpha
 endsnippet
 
 context "math()"
-snippet "b;" "beta" riA
+snippet b; "beta" iA
 \beta
 endsnippet
 
 context "math()"
-snippet "g;" "gamma" riA
+snippet g; "gamma" iA
 \gamma
 endsnippet
 
 context "math()"
-snippet "d;" "delta" riA
+snippet d; "delta" iA
 \delta
 endsnippet
 
 context "math()"
-snippet "e;" "varepsilon" riA
+snippet e; "varepsilon" iA
 \varepsilon
 endsnippet
 
 context "math()"
-snippet "z;" "zeta" riA
+snippet z; "zeta" iA
 \zeta
 endsnippet
 
 context "math()"
-snippet "t;" "theta" riA
+snippet t; "theta" iA
 \theta
 endsnippet
 
 context "math()"
-snippet "l;" "lambda" riA
+snippet l; "lambda" iA
 \lambda
 endsnippet
 
 context "math()"
-snippet "o;" "omega" riA
+snippet o; "omega" iA
 \omega
 endsnippet
 
 context "math()"
-snippet "p;" "varphi" riA
+snippet p; "varphi" iA
 \varphi
 endsnippet
 
@@ -738,5 +793,22 @@ snippet reln "Relative Tikz node" b
 $0
 endsnippet
 # </TikZ>
+
+# complexity
+context "math()"
+snippet bigo "O()" iA
+O(${1:n${VISUAL}})$0
+endsnippet
+
+context "math()"
+snippet bigt "O()" iA
+\Theta(${1:n${VISUAL}})$0
+endsnippet
+
+context "math()"
+snippet bigm "O()" iA
+\Omega(${1:n${VISUAL}})$0
+endsnippet
+# </complexity>
 
 # vim:ft=snippets
