@@ -5,6 +5,7 @@
 \RequirePackage{listings}
 \RequirePackage{multicol}
 \RequirePackage{kvoptions}
+\RequirePackage[scaled]{beramono}
 
 \SetupKeyvalOptions{
  family=ptkyr,
@@ -13,6 +14,7 @@
 
 % All default to false
 \DeclareBoolOption{darkmode}
+\DeclareBoolOption{background}
 
 \ProcessKeyvalOptions*
 
@@ -22,15 +24,17 @@
 
 \lstnewenvironment{twosplit}{\lstset{multicols=2}}{}
 
+\definecolor{gbbg}{HTML}{282828}
+\definecolor{gbfg}{HTML}{ebdbb2}
 \definecolor{gbred}{HTML}{fb4934}
 \definecolor{gbgreen}{HTML}{b8bb26}
 \definecolor{gbyellow}{HTML}{fabd2f}
 \definecolor{gbblue}{HTML}{83a598}
 \definecolor{gbpurple}{HTML}{d3869b}
 \definecolor{gbaqua}{HTML}{8ec07c}
-\definecolor{gbfg}{HTML}{ebdbb2}
 \definecolor{gbgray}{HTML}{a89984}
 
+\definecolor{lgbbg}{HTML}{f9f5d7}
 \definecolor{lgbfg}{HTML}{282828}
 \definecolor{lgbred}{HTML}{cc241d}
 \definecolor{lgbgreen}{HTML}{79740e}
@@ -41,34 +45,66 @@
 \definecolor{lgbgray}{HTML}{7c6f64}
 
 \ifptkyr@darkmode
-\lstdefinestyle{mystyle}{
-  commentstyle=\color{gbgray},
-  keywordstyle=\color{gbred},
-  numberstyle=\ttfamily\tiny\color{gbgray},
-  stringstyle=\color{gbgreen},
-  basicstyle=\ttfamily\color{gbfg},
-  captionpos=b,
-  numbers=left,
-  numbersep=3pt,
-  showstringspaces=false
-}
+    \ifptkyr@background
+    \lstdefinestyle{mystyle}{
+        backgroundcolor=\color{gbbg},
+        commentstyle=\color{gbgray},
+        keywordstyle=\color{gbred},
+        numberstyle=\ttfamily\tiny\color{gbgray},
+        stringstyle=\color{gbgreen},
+        basicstyle=\ttfamily\small\color{gbfg},
+        captionpos=b,
+        numbers=left,
+        numbersep=3pt,
+        showstringspaces=false
+    }
+    \else
+    \lstdefinestyle{mystyle}{
+        commentstyle=\color{gbgray},
+        keywordstyle=\color{gbred},
+        numberstyle=\ttfamily\tiny\color{gbgray},
+        stringstyle=\color{gbgreen},
+        basicstyle=\ttfamily\small\color{gbfg},
+        captionpos=b,
+        numbers=left,
+        numbersep=3pt,
+        showstringspaces=false
+    }
+    \fi
 \else 
-\lstdefinestyle{mystyle}{
-  commentstyle=\color{lgbaqua},
-  keywordstyle=\color{lgbred},
-  numberstyle=\ttfamily\tiny\color{lgbgray},
-  stringstyle=\color{lgbgreen},
-  basicstyle=\ttfamily\color{lgbfg},
-  captionpos=b,
-  numbers=left,
-  numbersep=3pt,
-  showstringspaces=false
-}
+    \ifptkyr@background
+    \lstdefinestyle{mystyle}{
+        backgroundcolor=\color{lgbbg},
+        commentstyle=\color{lgbaqua},
+        keywordstyle=\color{lgbred},
+        numberstyle=\ttfamily\tiny\color{lgbgray},
+        stringstyle=\color{lgbgreen},
+        basicstyle=\ttfamily\small\color{lgbfg},
+        captionpos=b,
+        numbers=left,
+        numbersep=3pt,
+        showstringspaces=false
+    }
+    \else
+    \lstdefinestyle{mystyle}{
+        commentstyle=\color{lgbaqua},
+        keywordstyle=\color{lgbred},
+        numberstyle=\ttfamily\tiny\color{lgbgray},
+        stringstyle=\color{lgbgreen},
+        basicstyle=\ttfamily\small\color{lgbfg},
+        captionpos=b,
+        numbers=left,
+        numbersep=3pt,
+        showstringspaces=false
+    }
+    \fi
+\fi
 
-%"mystyle" code listing set
 \lstset{
     language=C++,
-    style=mystyle
+    style=mystyle,
+    emph={Input, Output},
+    emphstyle=\textbf
 }
 
 \endinput

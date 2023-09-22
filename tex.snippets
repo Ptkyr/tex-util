@@ -63,6 +63,16 @@ snippet beg "begin{} / end{}" bA
 \\end{$1}
 endsnippet
 
+snippet alg "Algorithm" bA
+\begin{algorithm}
+\caption{$1}\label{alg:$1}
+\begin{algorithmic}
+$2
+\end{algorithmic}
+\end{algorithm}
+$0
+endsnippet
+
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
 	\centering
@@ -246,12 +256,16 @@ snippet bf "bold" w
 \textbf{${1:${VISUAL}}}$0
 endsnippet
 
+snippet ul "underline" w
+\underline{${1:${VISUAL}}}$0
+endsnippet
+
 snippet it "bold" w
 \emph{$1}$0
 endsnippet
 
 context "math()"
-snippet tt "text" iA
+snippet tx "text" iA
 \text{$1}$0
 endsnippet
 
@@ -263,6 +277,13 @@ snippet blk "codeblock" bA
 \begin{codeblock}
 $1
 \end{codeblock}
+$0
+endsnippet
+
+snippet two "twosplit" bA
+\begin{twosplit}
+$1
+\end{twosplit}
 $0
 endsnippet
 
@@ -348,6 +369,11 @@ snippet lr "left( right)" iA
 endsnippet
 
 context "math()"
+snippet lb "left[ right]" iA
+\left[${1:${VISUAL}}\right] $0
+endsnippet
+
+context "math()"
 snippet abs "left| right|" iA
 \left|${1:${VISUAL}}\right| $0
 endsnippet
@@ -398,12 +424,12 @@ endsnippet
 # LHR oversets or LL(1)	or SLR(1) etc.
 priority 100
 context "math()"
-snippet "([A-Z0])(\:)" "mathbb" riA
+snippet "([A-Z])(\:)" "mathbb" riA
 \mathbb{`!p snip.rv=match.group(1)`}
 endsnippet
 
 context "math()"
-snippet "(s)([xynm])" "subn" riA
+snippet "(s)([bfxynml])" "subn" riA
 _`!p snip.rv = match.group(2)`
 endsnippet
 
@@ -427,6 +453,7 @@ snippet mcal "mathcal" iA
 \mathcal{$1}$0
 endsnippet
 
+context "math()"
 snippet mod "modulo" iA
 \pmod{$1}$0
 endsnippet
@@ -473,17 +500,17 @@ endsnippet
 
 context "math()"
 snippet ood "\odot" iA
-\odot
+\odot 
 endsnippet
 
 context "math()"
 snippet oop "\oplus" iA
-\oplus
+\oplus 
 endsnippet
 
 context "math()"
 snippet oot "\otimes" iA
-\otimes
+\otimes 
 endsnippet
 
 context "math()"
@@ -518,6 +545,12 @@ snippet '(?<!\\)(sin|cos|tan|cot|csc|sec|ln|log|exp)' "functions" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
+priority 100
+context "math()"
+snippet '(?<!\\)(geq|leq|del|cap|cup)' "relations" rwA
+\\`!p snip.rv = match.group(1)` 
+endsnippet
+
 priority 200
 context "math()"
 snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec)' "otherfunc" rwA
@@ -538,6 +571,11 @@ endsnippet
 context "math()"
 snippet cc "subset" Ai
 \subseteq 
+endsnippet
+
+context "math()"
+snippet cont "superset/containing" Ai
+\supseteq 
 endsnippet
 
 context "math()"
@@ -586,14 +624,29 @@ snippet ... "ldots" iA
 \ldots
 endsnippet
 
+context "math()"
 snippet =- "equiv" iA
 \equiv 
 endsnippet
 
+context "math()"
 snippet == "equals" iA
 &= $1 \\\\$0
 endsnippet
 
+priority 200
+context "math()"
+snippet agq "geq" iA
+&\geq $1 \\\\$0
+endsnippet
+
+priority 200
+context "math()"
+snippet alq "leq" iA
+&\leq $1 \\\\$0
+endsnippet
+
+context "math()"
 snippet -= "not equals" iA
 \neq 
 endsnippet
@@ -648,10 +701,6 @@ snippet <> "hokje" iA
 endsnippet
 # </special symbols>
 
-snippet SI "SI" iA
-\SI{$1}{$2}
-endsnippet
-
 # postscripts
 priority 10
 context "math()"
@@ -663,6 +712,12 @@ priority 100
 context "math()"
 snippet "([a-zA-Z])bar" "bar" riA
 \overline{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 100
+context "math()"
+snippet deg "interior/degree" iA
+^{\circ}
 endsnippet
 
 priority 10
@@ -704,16 +759,24 @@ snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
-priority 100
 context "math()"
-snippet "(.)over" "overset" riA
-\overset{$1}{`!p snip.rv=match.group(1)`} $0
+snippet "over" "overset" riA
+\overset{$2}{$1} $0
 endsnippet
 
-priority 100
 context "math()"
-snippet "(.)under" "underset" riA
-\underset{$1}{`!p snip.rv=match.group(1)`} $0
+snippet "over" "overbrace" riA
+\overbrace{$1}_\text{$2} $0
+endsnippet
+
+context "math()"
+snippet "under" "underset" riA
+\underset{$2}{$1} $0
+endsnippet
+
+context "math()"
+snippet "under" "underbrace" riA
+\underbrace{$1}_\text{$2} $0
 endsnippet
 # </postscripts>
 
@@ -735,6 +798,11 @@ endsnippet
 context "math()"
 snippet g; "gamma" iA
 \gamma
+endsnippet
+
+context "math()"
+snippet c; "chi" iA
+\chi
 endsnippet
 
 context "math()"
@@ -793,18 +861,28 @@ endsnippet
 # complexity
 context "math()"
 snippet bigo "O()" iA
-O(${1:n${VISUAL}})$0
+O\left(${1:n${VISUAL}}\right)$0
 endsnippet
 
 context "math()"
 snippet bigt "O()" iA
-\Theta(${1:n${VISUAL}})$0
+\Theta\left(${1:n${VISUAL}}\right)$0
 endsnippet
 
 context "math()"
 snippet bigm "O()" iA
-\Omega(${1:n${VISUAL}})$0
+\Omega\left(${1:n${VISUAL}}\right)$0
 endsnippet
 # </complexity>
+
+# english
+snippet LI "linearly independent" w
+linearly independent
+endsnippet
+
+snippet LD "linearly dependent" w
+linearly dependent
+endsnippet
+# </english>
 
 # vim:ft=snippets
