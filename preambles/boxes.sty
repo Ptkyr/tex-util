@@ -10,11 +10,11 @@
 }
 
 % All default to false
-\DeclareBoolOption{boxed}
+\DeclareBoolOption[true]{boxed}
 \DeclareBoolOption{boxedthm}
 \DeclareBoolOption{boxedlemma}
 \DeclareBoolOption{boxeddefn}
-\DeclareBoolOption{boxedlight}
+\DeclareBoolOption{dark}
 \DeclareBoolOption{nonumbers}
 
 \ProcessKeyvalOptions*
@@ -56,10 +56,10 @@
 % Everything below here is for defn/thm/lemma/prop
 
 % Box Thm Colors
-\definecolor{defncol}{HTML}{ed4700} 
-\definecolor{thmcol}{HTML}{000080} 
-\definecolor{lemmcol}{HTML}{990000} 
-\definecolor{propcol}{HTML}{71169e} 
+\definecolor{defncol}{HTML}{a0a0a0} 
+\definecolor{thmcol}{HTML}{00668f} 
+\definecolor{lemmcol}{HTML}{a3006f} 
+\definecolor{propcol}{HTML}{00855d} 
 
 % Box Theorems
 \ifptkyr@nonumbers
@@ -183,11 +183,11 @@ number within=section]{bdefi}{Definition}{
 \renewenvironment{defn}[1]{\begin{bdefn}{#1}}{\end{bdefn}}
 \fi
 
-\ifptkyr@boxedlight
-\definecolor{defncol}{HTML}{a0a0a0} 
-\definecolor{thmcol}{HTML}{00668f} 
-\definecolor{lemmcol}{HTML}{a3006f} 
-\definecolor{propcol}{HTML}{00855d} 
+\ifptkyr@dark
+\definecolor{defncol}{HTML}{ed4700} 
+\definecolor{thmcol}{HTML}{000080} 
+\definecolor{lemmcol}{HTML}{990000} 
+\definecolor{propcol}{HTML}{71169e} 
 \fi
 
 \allowdisplaybreaks
