@@ -63,16 +63,6 @@ snippet beg "begin{} / end{}" bA
 \\end{$1}
 endsnippet
 
-snippet alg "Algorithm" bA
-\begin{algorithm}
-\caption{$1}\label{alg:$1}
-\begin{algorithmic}
-$2
-\end{algorithmic}
-\end{algorithm}
-$0
-endsnippet
-
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
 	\centering
@@ -158,7 +148,6 @@ snippet remk "Remark" bA
 \begin{remk}
 	$1
 \end{remk}
-\smallbreak
 $0
 endsnippet
 
@@ -166,7 +155,6 @@ snippet exmp "Example" bA
 \begin{exmp}
 	$1
 \end{exmp}
-\smallbreak
 $0
 endsnippet
 
@@ -232,6 +220,11 @@ endsnippet
 # </environments>
 
 # formatting
+snippet small "smallbreak" bA
+\smallbreak
+$0
+endsnippet
+
 snippet med "medbreak" bA
 \medbreak
 $0
@@ -294,7 +287,7 @@ endsnippet
 # </formatting>
 
 # limits
-priority 300
+priority 200
 context "math()"
 snippet dint "integral" wA
 \int_{${1:-\infty}}^{${2:\infty}} ${4:${VISUAL}} \\,d${3:x} $0
@@ -307,12 +300,12 @@ snippet idint "integral" wA
 endsnippet
 
 context "math()"
-snippet "(?<!\\)min" "min" rwA
+snippet "(?<!\\)MIN" "min" rwA
 \min\limits_{${1:\vv{x} \in ${2:\mathbb{R}^n}}}
 endsnippet
 
 context "math()"
-snippet "(?<!\\)max" "max" rwA
+snippet "(?<!\\)MAX" "max" rwA
 \max\limits_{${1:\vv{x} \in ${2:\mathbb{R}^n}}}
 endsnippet
 
@@ -334,6 +327,11 @@ endsnippet
 context "math()"
 snippet limsup "limsup" w
 \limsup\limits_{${1:n} \to ${2:\infty}} 
+endsnippet
+
+context "math()"
+snippet liminf "liminf" w
+\liminf\limits_{${1:n} \to ${2:\infty}} 
 endsnippet
 
 context "math()"
@@ -379,7 +377,7 @@ snippet abs "left| right|" iA
 endsnippet
 
 context "math()"
-snippet ipr "leftangle rightangle" iA
+snippet ipr "inner product" iA
 \left\langle ${1:${VISUAL}}\right\rangle$0
 endsnippet
 
@@ -406,13 +404,18 @@ endsnippet
 #endsnippet
 
 context "math()"
-snippet // "Fraction" iA
+snippet df "Fraction" iA
 \\dfrac{$1}{$2}$0
 endsnippet
 
 context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\dfrac{`!p snip.rv = match.group(1)`}{$1}$0
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 snippet part "d/dx" w
@@ -429,23 +432,14 @@ snippet "([A-Z])(\:)" "mathbb" riA
 endsnippet
 
 context "math()"
-snippet "(s)([bfxynml])" "subn" riA
+snippet "(s)([bfxynmljk])" "subn" riA
 _`!p snip.rv = match.group(2)`
 endsnippet
 
+# Stupid special case because of sin
 context "math()"
 snippet ii "subi" iA
 _i
-endsnippet
-
-context "math()"
-snippet jj "subj" iA
-_j
-endsnippet
-
-context "math()"
-snippet kk "subk" iA
-_k
 endsnippet
 
 context "math()"
@@ -481,6 +475,11 @@ endsnippet
 context "math()"
 snippet td "to the ... power" iA
 ^{$1}$0
+endsnippet
+
+context "math()"
+snippet trans "transpose" iA
+^T
 endsnippet
 
 context "math()"
@@ -548,6 +547,12 @@ endsnippet
 priority 100
 context "math()"
 snippet '(?<!\\)(geq|leq|del|cap|cup)' "relations" rwA
+\\`!p snip.rv = match.group(1)` 
+endsnippet
+
+priority 100
+context "math()"
+snippet '(?<!\\)(dim|spn|nllsp|nllty|rank)' "operators" rwA
 \\`!p snip.rv = match.group(1)` 
 endsnippet
 
@@ -811,6 +816,11 @@ snippet d; "delta" iA
 endsnippet
 
 context "math()"
+snippet m; "mu" iA
+\mu
+endsnippet
+
+context "math()"
 snippet e; "varepsilon" iA
 \varepsilon
 endsnippet
@@ -882,6 +892,18 @@ endsnippet
 
 snippet LD "linearly dependent" w
 linearly dependent
+endsnippet
+
+snippet certinf "certificate of infeasibility" w
+certificate of infeasibility
+endsnippet
+
+snippet certopt "certificate of optimality" w
+certificate of optimality
+endsnippet
+
+snippet certunb	"certificate of unboundedness" w
+certificate of unboundedness
 endsnippet
 # </english>
 

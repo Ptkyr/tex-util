@@ -18,6 +18,42 @@
 
 \ProcessKeyvalOptions*
 
+% Theorems/proofs
+\newtheoremstyle{boldrem}%      % Name
+  {2pt}%                        % Space above
+  {2pt}%                        % Space below
+  {}%                           % Body font (empty for upright)
+  {}%                           % Indent amount
+  {\itshape\bfseries}%          % Theorem head font
+  {.}%                          % Punctuation after theorem head
+  {0.5em}%                        % Space after theorem head, ' ', or \newline
+  {}%                           % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{subthm}{Theorem}[subsection]
+\newtheorem{subprop}[subthm]{Proposition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{subcor}[subthm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{sublemma}[subthm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{subdefn}[subthm]{Definition}
+\theoremstyle{remark}           % This is a default style I think
+\newtheorem*{notn}{Notation}
+\newtheorem*{conv}{Convention}
+\newtheorem*{warn}{Warning}
+\newtheorem*{aside}{Aside}
+\theoremstyle{boldrem}          % Things I actually use
+\newtheorem*{remk}{Remark}
+\newtheorem*{ques}{Question}
+\newtheorem*{exer}{Exercise}
+\newtheorem*{exmp}{Example}
+\newtheorem*{cex}{Counterexample}
+
+% Everything below here is for defn/thm/lemma/prop
+
 % Box Thm Colors
 \definecolor{defncol}{HTML}{ed4700} 
 \definecolor{thmcol}{HTML}{000080} 
@@ -147,10 +183,10 @@ number within=section]{bdefi}{Definition}{
 \fi
 
 \ifptkyr@boxedlight
-\definecolor{defncol}{HTML}{008f5d} 
+\definecolor{defncol}{HTML}{a0a0a0} 
 \definecolor{thmcol}{HTML}{00668f} 
 \definecolor{lemmcol}{HTML}{a3006f} 
-\definecolor{propcol}{HTML}{c95400} 
+\definecolor{propcol}{HTML}{00855d} 
 \fi
 
 \allowdisplaybreaks
