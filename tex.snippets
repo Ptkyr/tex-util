@@ -120,6 +120,13 @@ snippet thm "Theorem" bA
 $0
 endsnippet
 
+snippet cor "Corollary" bA
+\begin{cor}{$1}
+	$2
+\end{cor}
+$0
+endsnippet
+
 snippet lemma "Lemma" bA
 \begin{lemma}{$1}
 	$2
@@ -238,7 +245,7 @@ $0
 endsnippet
 
 snippet qq "question number" bA
-\textbf{Question $1.}
+\noindent\textbf{Question $1.}
 $0
 endsnippet
 
@@ -265,9 +272,8 @@ endsnippet
 
 snippet blk "codeblock" bA
 \begin{codeblock}
-$1
-\end{codeblock}
 $0
+\end{codeblock}
 endsnippet
 
 snippet two "twosplit" bA
@@ -307,7 +313,7 @@ snippet "(?<!\\)MAX" "max" rwA
 endsnippet
 
 context "math()"
-snippet sum "sum" wA
+snippet SUM "SUM" wA
 \sum\limits_{${1:i}=${2:0}}^{${3:\infty}} ${4:x^i}
 endsnippet
 
@@ -429,7 +435,7 @@ snippet "([A-Z])(\:)" "mathbb" riA
 endsnippet
 
 context "math()"
-snippet "(s)([bfxynmljk])" "subn" riA
+snippet "(s)([bfxynmjk])" "subn" riA
 _`!p snip.rv = match.group(2)`
 endsnippet
 
@@ -477,6 +483,11 @@ endsnippet
 context "math()"
 snippet trans "transpose" iA
 ^T
+endsnippet
+
+context "math()"
+snippet adj "adjoint" iA
+^*
 endsnippet
 
 context "math()"
@@ -567,6 +578,11 @@ endsnippet
 context "math()"
 snippet compl "complement" iA
 ^{c}
+endsnippet
+
+context "math()"
+snippet orth "perp" iA
+^{\perp}
 endsnippet
 
 # Note: does not conflict with \code
@@ -685,9 +701,10 @@ snippet ~~ "~" iA
 endsnippet
 
 context "math()"
-snippet | "mid" iA
+snippet mid "mid" iA
 \mid 
 endsnippet
+
 snippet -- "tablesep" iA
  & $0
 endsnippet
@@ -718,7 +735,7 @@ endsnippet
 
 priority 100
 context "math()"
-snippet deg "interior/degree" iA
+snippet dg "interior/degree" iA
 ^{\circ}
 endsnippet
 
@@ -798,6 +815,11 @@ snippet b; "beta" iA
 endsnippet
 
 context "math()"
+snippet G; "Gamma" iA
+\Gamma
+endsnippet
+
+context "math()"
 snippet g; "gamma" iA
 \gamma
 endsnippet
@@ -845,6 +867,11 @@ endsnippet
 context "math()"
 snippet p; "varphi" iA
 \varphi
+endsnippet
+
+context "math()"
+snippet r; "r" iA
+\rho
 endsnippet
 
 context "math()"

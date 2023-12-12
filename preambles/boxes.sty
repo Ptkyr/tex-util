@@ -5,29 +5,24 @@
 \RequirePackage[many]{tcolorbox}
 
 \SetupKeyvalOptions{
- family=ptkyr,
- prefix=ptkyr@
+    family=ptkyr,
+    prefix=ptkyr@
 }
 
-% All default to false
 \DeclareBoolOption[true]{boxed}
-\DeclareBoolOption{boxedthm}
-\DeclareBoolOption{boxedlemma}
-\DeclareBoolOption{boxeddefn}
-\DeclareBoolOption{dark}
-\DeclareBoolOption{nonumbers}
+\DeclareBoolOption[false]{dark}
 
 \ProcessKeyvalOptions*
 
 % Theorems/proofs
-\newtheoremstyle{boldrem}%      % Name
+\newtheoremstyle{bfit}%      % Name
   {2pt}%                        % Space above
   {2pt}%                        % Space below
   {}%                           % Body font (empty for upright)
   {}%                           % Indent amount
   {\itshape\bfseries}%          % Theorem head font
   {.}%                          % Punctuation after theorem head
-  {0.5em}%                        % Space after theorem head, ' ', or \newline
+  {0.5em}%                      % Space after theorem head, ' ', or \newline
   {}%                           % Theorem head spec (can be left empty, meaning `normal')
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
@@ -46,7 +41,7 @@
 \newtheorem*{conv}{Convention}
 \newtheorem*{warn}{Warning}
 \newtheorem*{aside}{Aside}
-\theoremstyle{boldrem}          % Things I actually use
+\theoremstyle{bfit}          % Things I actually use
 \newtheorem*{remk}{Remark}
 \newtheorem*{ques}{Question}
 \newtheorem*{exer}{Exercise}
@@ -55,132 +50,71 @@
 
 % Everything below here is for defn/thm/lemma/prop
 
-% Box Thm Colors
+% Colours
 \definecolor{defncol}{HTML}{a0a0a0} 
 \definecolor{thmcol}{HTML}{00668f} 
 \definecolor{lemmcol}{HTML}{a3006f} 
 \definecolor{propcol}{HTML}{00855d} 
+\definecolor{corcol}{HTML}{5488e3} 
 
 % Box Theorems
-\ifptkyr@nonumbers
-\newtcbtheorem{bthmi}{Theorem}{
-    width=\textwidth,
-    colback=black!2,
+\tcbset{
+    ptkyrbox/.style={
+        width=\textwidth,
+        boxrule=1pt,
+        boxsep=1pt,
+        colback=white!0,
+        sharp corners,
+        breakable,
+        enhanced,
+        fonttitle=\bfseries,
+        boxed title style={sharp corners},
+        attach boxed title to top left
+    }
+}
+\newtcbtheorem[number within=section]{btheoremi}{Theorem}{
+    ptkyrbox,
     colframe=thmcol,
-    colbacktitle=thmcol,
-    fonttitle=\bfseries,
-    sharp corners,
-    boxrule=1pt,
-    breakable,
-    enhanced,
-    boxed title style={sharp corners},
-    attach boxed title to top left
-}{bthmi}
-\else 
-\newtcbtheorem[number within=section]{bthmi}{Theorem}{
-    width=\textwidth,
-    colback=black!2,
-    colframe=thmcol,
-    colbacktitle=thmcol,
-    fonttitle=\bfseries,
-    sharp corners,
-    boxrule=1pt,
-    breakable,
-    enhanced,
-    boxed title style={sharp corners},
-    attach boxed title to top left
-}{bthmi}
-\fi
-\newtcbtheorem[use counter from=bthmi,
-number within=section]{bdefi}{Definition}{
-    width=\textwidth,
-    colback=white!20,
+    colbacktitle=thmcol
+}{btheoremi}
+\newtcbtheorem[use counter from=btheoremi]{bdefinitioni}{Definition}{
+    ptkyrbox,
     colframe=defncol,
     colbacktitle=defncol,
-    fonttitle=\bfseries,
-    sharp corners,
-    boxrule=1pt,
-    breakable,
-    enhanced,
-    boxed title style={sharp corners},
-    attach boxed title to top left
-}{bdefi}
-\newtcbtheorem[use counter from=bthmi, number within=subsection]{blemmai}{Lemma}{
-    width=\textwidth,
-    colback=white!0,
+}{bdefinitioni}
+\newtcbtheorem[use counter from=btheoremi]{blemmai}{Lemma}{
+    ptkyrbox,
     colframe=lemmcol,
     colbacktitle=lemmcol,
-    fonttitle=\bfseries,
-    sharp corners,
-    boxrule=1pt,
-    breakable,
-    enhanced,
-    boxed title style={sharp corners},
-    attach boxed title to top left
 }{blemmai}
-\newtcbtheorem[use counter from=bthmi, number within=subsection]{bpropositioni}{Proposition}{
-    width=\textwidth,
-    colback=white!0,
+\newtcbtheorem[use counter from=btheoremi]{bpropositioni}{Proposition}{
+    ptkyrbox,
     colframe=propcol,
     colbacktitle=propcol,
-    fonttitle=\bfseries,
-    sharp corners,
-    boxrule=1pt,
-    breakable,
-    enhanced,
-    boxed title style={sharp corners},
-    attach boxed title to top left
 }{bpropositioni}
-
-% Boxed Theorems/defn
-\newenvironment{bthm}[1]
-    {\begin{bthmi}{#1}{}}
-    {\end{bthmi}}
-\newenvironment{blemma}[1]
+\newtcbtheorem[use counter from=btheoremi]{bcorollaryi}{Corollary}{
+    ptkyrbox,
+    colframe=corcol,
+    colbacktitle=corcol,
+}{bcorollaryi}
+    
+% Options
+\ifptkyr@boxed
+\renewenvironment{thm}[1]
+    {\begin{btheoremi}{#1}{}}
+    {\end{btheoremi}}
+\renewenvironment{defn}[1]
+    {\begin{bdefinitioni}{#1}{}}
+    {\end{bdefinitioni}}
+\renewenvironment{lemma}[1]
     {\begin{blemmai}{#1}{}}
     {\end{blemmai}}
-\newenvironment{bdefn}[1]
-    {\begin{bdefi}{#1}{}}
-    {\end{bdefi}}
-\newenvironment{bpropi}[1]
+\renewenvironment{prop}[1]
     {\begin{bpropositioni}{#1}{}}
     {\end{bpropositioni}}
-    
-    
-% No numbering
-\newtcbtheorem{nolemmai}{Lemma}{
-    width=\textwidth,
-    colback=white!0,
-    colframe=lemmcol,
-    colbacktitle=lemmcol,
-    fonttitle=\bfseries,
-    sharp corners,
-    boxrule=1pt,
-    breakable,
-    enhanced,
-    boxed title style={sharp corners},
-    attach boxed title to top left
-}{nolemmai}
-\newenvironment{nolemma}[1]
-    {\begin{nolemmai}{#1}{}}
-    {\end{nolemmai}}
-    
-% Boxed options
-\ifptkyr@boxed
-\renewenvironment{thm}[1]{\begin{bthm}{#1}}{\end{bthm}}
-\renewenvironment{defn}[1]{\begin{bdefn}{#1}}{\end{bdefn}}
-\renewenvironment{lemma}[1]{\begin{blemma}{#1}}{\end{blemma}}
-\renewenvironment{prop}[1]{\begin{bpropi}{#1}}{\end{bpropi}}
-\fi
-
-\ifptkyr@boxedthm
-\renewenvironment{thm}[1]{\begin{bthm}{#1}}{\end{bthm}}
-\fi
-\ifptkyr@boxedlemma
-\renewenvironment{lemma}[1]{\begin{blemma}{#1}}{\end{blemma}}
-\fi
-\ifptkyr@boxeddefn
-\renewenvironment{defn}[1]{\begin{bdefn}{#1}}{\end{bdefn}}
+\renewenvironment{cor}[1]
+    {\begin{bcorollaryi}{#1}{}}
+    {\end{bcorollaryi}}
 \fi
 
 \ifptkyr@dark

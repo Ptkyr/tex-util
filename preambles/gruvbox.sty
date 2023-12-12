@@ -34,7 +34,7 @@
 \definecolor{gbaqua}{HTML}{8ec07c}
 \definecolor{gbgray}{HTML}{a89984}
 
-\definecolor{lgbbg}{HTML}{f9f5d7}
+\definecolor{lgbbg}{HTML}{fffae0}
 \definecolor{lgbfg}{HTML}{282828}
 \definecolor{lgbred}{HTML}{cc241d}
 \definecolor{lgbgreen}{HTML}{79740e}
@@ -44,65 +44,24 @@
 \definecolor{lgbaqua}{HTML}{427b58}
 \definecolor{lgbgray}{HTML}{7c6f64}
 
-\ifptkyr@darkmode
-    \ifptkyr@background
-    \lstdefinestyle{mystyle}{
-        backgroundcolor=\color{gbbg},
-        commentstyle=\color{gbgray},
-        keywordstyle=\color{gbred},
-        numberstyle=\ttfamily\tiny\color{gbgray},
-        stringstyle=\color{gbgreen},
-        basicstyle=\ttfamily\small\color{gbfg},
-        captionpos=b,
-        numbers=left,
-        numbersep=3pt,
-        showstringspaces=false
-    }
-    \else
-    \lstdefinestyle{mystyle}{
-        commentstyle=\color{gbgray},
-        keywordstyle=\color{gbred},
-        numberstyle=\ttfamily\tiny\color{gbgray},
-        stringstyle=\color{gbgreen},
-        basicstyle=\ttfamily\small\color{gbfg},
-        captionpos=b,
-        numbers=left,
-        numbersep=3pt,
-        showstringspaces=false
-    }
-    \fi
-\else 
-    \ifptkyr@background
-    \lstdefinestyle{mystyle}{
-        backgroundcolor=\color{lgbbg},
-        commentstyle=\color{lgbaqua},
-        keywordstyle=\color{lgbred},
-        numberstyle=\ttfamily\tiny\color{lgbgray},
-        stringstyle=\color{lgbgreen},
-        basicstyle=\ttfamily\small\color{lgbfg},
-        captionpos=b,
-        numbers=left,
-        numbersep=3pt,
-        showstringspaces=false
-    }
-    \else
-    \lstdefinestyle{mystyle}{
-        commentstyle=\color{lgbaqua},
-        keywordstyle=\color{lgbred},
-        numberstyle=\ttfamily\tiny\color{lgbgray},
-        stringstyle=\color{lgbgreen},
-        basicstyle=\ttfamily\small\color{lgbfg},
-        captionpos=b,
-        numbers=left,
-        numbersep=3pt,
-        showstringspaces=false
-    }
-    \fi
+\lstset{
+    commentstyle=\color{lgbaqua},
+    keywordstyle=\color{lgbred},
+    numberstyle=\ttfamily\bfseries\tiny\color{lgbgray},
+    stringstyle=\color{lgbgreen},
+    basicstyle=\ttfamily\small\color{lgbfg},
+    captionpos=b,
+    numbers=left,
+    numbersep=2pt,
+    showstringspaces=false
+}
+
+\ifptkyr@background
+    \lstset{backgroundcolor=\color{lgbbg}}
 \fi
 
 \lstset{
     language=C++,
-    style=mystyle,
     emph={Input, Output},
     emphstyle=\textbf
 }
