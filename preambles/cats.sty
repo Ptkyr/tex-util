@@ -2,6 +2,9 @@
 \ProvidesPackage{cats}
 
 % Calculus
+\NewDocumentCommand{\intat}%
+    { O{f(x)} O{0} O{1} }%
+    {#1 \Bigr\rvert_{#2}^{#3}}
 \NewDocumentCommand{\defint}{O{f}O{x}O{a}O{b}}
 {\int_{#3}^{#4} #1 \,\mathrm{d}#2}
 \NewDocumentCommand{\deffint}{O{f}O{x}O{a}O{b}}

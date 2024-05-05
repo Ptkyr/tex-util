@@ -11,6 +11,7 @@
 \newcommand{\diam}{\operatorname{diam}}
 \newcommand{\dist}{\operatorname{dist}}
 \newcommand{\spn}{\operatorname{Span}}
+\newcommand{\setspan}[1]{\operatorname{Span}\left\{#1\right\}}
 \newcommand{\codim}{\operatorname{codim}}
 \newcommand{\nllty}{\operatorname{nullity}}
 \newcommand{\rref}{\operatorname{RREF}}
@@ -39,31 +40,36 @@
 }
 \ExplSyntaxOff
 % list of vectors
-\NewDocumentCommand{\vectors}{O{v} O{1} O{k}}
-{\vv{#1_{#2}}, \dots, \vv{#1_{#3}}}
+\NewDocumentCommand{\vectors}%
+    {O{v} O{1} O{k}}%
+    {\vv{#1_{#2}}, \dots, \vv{#1_{#3}}}
 % list of scalars
-\NewDocumentCommand{\scalars}{O{c} O{1} O{k}}
-{#1_{#2}, \dots, #1_{#3}}
+\NewDocumentCommand{\scalars}%
+    {O{c} O{1} O{k}}%
+    {#1_{#2}, \dots, #1_{#3}}
 % linear combination
-\NewDocumentCommand{\lincom}{O{v} O{c} O{1} O{k}}
-{
-    {#2}_{#3}{\vv{{#1}_{#3}}} + \dots + {#2}_{#4}{\vv{{#1}_{#4}}}
-}
+\NewDocumentCommand{\lincom}%
+    {O{v} O{c} O{1} O{k}}%
+    {{#2}_{#3}{\vv{{#1}_{#3}}} + \dots + {#2}_{#4}{\vv{{#1}_{#4}}}}
 \newcommand{\tvec}[1]{\lvec[&]{#1}^T}
 \newcommand{\dotp}[2]{\vv{#1}\cdot\vv{#2}}
-\NewDocumentCommand{\coord}{m O{\vv{v}}}
-{\begin{bmatrix}%
-    #2%
-\end{bmatrix}%
-_{\mathcal{#1}}}
+\NewDocumentCommand{\coord}%
+    {m O{\vv{v}}}%
+    {\begin{bmatrix}%
+        #2%
+    \end{bmatrix}%
+    _{\mathcal{#1}}}
 
 % Commands for matrices
-\NewDocumentCommand{\letmat}{O{A}O{m}O{n}O{F}}
-{#1 \in M_{#2 \times #3}(\mathbb{#4})}
-\NewDocumentCommand{\matspace}{O{m}O{n}O{F}}
-{M_{#1 \times #2}(\mathbb{#3})}
-\NewDocumentCommand{\transform}{O{T}O{n}O{m}O{F}}
-{#1: \mathbb{#4}^{#2} \to \mathbb{#4}^{#3}}
+\NewDocumentCommand{\letmat}%
+    {O{A} O{m} O{n} O{F}}%
+    {#1 \in M_{#2 \times #3}(\mathbb{#4})}
+\NewDocumentCommand{\matspace}%
+    {O{m} O{n} O{F}}%
+    {M_{#1 \times #2}(\mathbb{#3})}
+\NewDocumentCommand{\transform}%
+    {O{T} O{n} O{m} O{F}}%
+    {#1: \mathbb{#4}^{#2} \to \mathbb{#4}^{#3}}
 \newcommand{\coordmat}[2]{\begin{bmatrix}
     #1
 \end{bmatrix}_{\mathcal{#2}}}
