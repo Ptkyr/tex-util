@@ -1,0 +1,8 @@
+[package]
+name = "linalg"
+version = "1.0.0"
+authors = ["Ptkyr"]
+license = "MIT"
+description = "Linear algebra templates"
+
+entrypoint = "./linalg.typ"

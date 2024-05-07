@@ -17,11 +17,46 @@
     set par(leading: 0.55em, first-line-indent: 1.8em, justify: true)
     show par: set block(spacing: 0.65em)
 
+    set enum(numbering: "(a)")
     set text(10pt, font: "New Computer Modern")
 
     set table.hline(stroke: 0.1pt)
     set table.vline(stroke: 0.1pt)
     set figure.caption(position: top)
 
+    set math.mat(delim: "[")
+    set math.vec(delim: "[")
+
     show: doc
+
+    // Don't know why but this has to be after the show
+    set enum(numbering: "(a)")
 }
+
+#let tableau(..args) = {
+    table(
+        stroke: (x, y) => (
+            left: if x > 0 { 0.1pt },
+            top: if y > 0 { 0.1pt },
+        ),
+        ..args
+    )
+}
+
+#let tchart(left, right, ..content) = {
+    table(
+        columns: 2,
+        stroke: none,
+        table.vline(x: 1),
+        table.header([*#left*], [*#right*]),
+        table.hline(),
+        ..content
+    )
+}
+
+#let sgn = math.op("sgn")
+#let imp = math.arrow.r.double.long
+#let impby = math.arrow.l.double.long
+#let iff = math.arrow.l.r.double.long
+#let cup = math.union
+#let cap = math.sect
