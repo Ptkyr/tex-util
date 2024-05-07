@@ -1,0 +1,8 @@
+[package]
+name = "boxes"
+version = "1.0.0"
+authors = ["Ptkyr"]
+license = "MIT"
+description = "Theorem boxes"
+
+entrypoint = "./boxes.typ"

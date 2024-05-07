@@ -1,0 +1,116 @@
+global !p
+def math():
+	return vim.eval('typst#in_math()') == '1'
+endglobal
+
+# preamble
+snippet template "Basic template" b
+#import "@local/base:1.0.0": *
+#import "@local/boxes:1.0.0": *
+
+#show: doc => meta(
+    "$1",
+    doc,
+)
+$0
+endsnippet
+
+snippet pac "Package" b
+#import "@preview/${1:package}:${2:ver}": $0
+endsnippet
+
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`$2
+endsnippet
+
+snippet dm "Block math" wA
+$
+${1:${VISUAL}}
+.
+$ 
+$0
+endsnippet
+
+snippet thm "Theorem" bA
+#thm[$1][
+$2
+]
+$0
+endsnippet
+
+snippet cor "Corollary" bA
+#cor[$1][
+$2
+]
+$0
+endsnippet
+
+snippet lemma "Lemma" bA
+#lemma[$1][
+$2
+]
+$0
+endsnippet
+
+snippet defn "Definition" bA
+#defn[$1][
+$2
+]
+$0
+endsnippet
+
+snippet prop "Proposition" bA
+#prop[$1][
+$2
+]
+$0
+endsnippet
+
+snippet remk "Remark" bA
+#remk[$1]
+$0
+endsnippet
+
+snippet exmp "Example" bA
+#exmp[$1]
+$0
+endsnippet
+
+snippet note "Note" bA
+#note[$1]
+$0
+endsnippet
+
+### math ###
+context "math()"
+snippet of "function of" iA
+(${1:x})$0
+endsnippet
+
+# limits
+priority 200
+context "math()"
+snippet dint "definite integral" wA
+integral_(${1:-infinity})^(${2:infinity}) ${4:${VISUAL}} dif ${3:x} $0
+endsnippet
+
+priority 300
+context "math()"
+snippet iint "indefinite integral" wA
+integral ${2:${VISUAL}} dif ${1:x} $0
+endsnippet
+
+context "math()"
+snippet == "equals" iA
+&= $1 \\$0
+endsnippet
+
+context "math()"
+snippet ooo "infinity" iA
+infinity
+endsnippet

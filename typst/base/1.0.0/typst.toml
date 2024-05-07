@@ -1,0 +1,8 @@
+[package]
+name = "base"
+version = "1.0.0"
+authors = ["Ptkyr"]
+license = "MIT"
+description = "Formatting"
+
+entrypoint = "./base.typ"
