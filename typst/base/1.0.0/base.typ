@@ -60,3 +60,4 @@
 #let iff = math.arrow.l.r.double.long
 #let cup = math.union
 #let cap = math.sect
+#let xx = math.times

@@ -18,7 +18,7 @@
 #let ker = math.op("Ker")
 #let adj = math.op("adj")
 #let proj = math.op("proj")
-#let perp = math.op("perp")
+#let perpop = math.op("perp")
 
 // Optimization
 #let cvhull = math.op("cvhull")

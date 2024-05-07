@@ -7,6 +7,10 @@ snippet [] "Content" wA
 [$1]$0
 endsnippet
 
+snippet ul "underline" w 
+#underline([$1])$0
+endsnippet
+
 # preamble
 snippet template "Basic template" b
 #import "@local/base:1.0.0": *
@@ -132,6 +136,17 @@ snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
 endsnippet
 
 context "math()"
+snippet "(s)([bfxynmjk])" "subn" riA
+_`!p snip.rv = match.group(2)`
+endsnippet
+
+# Stupid special case because of sin
+context "math()"
+snippet ii "subi" iA
+_i
+endsnippet
+
+context "math()"
 snippet td "to the ... power" iA
 ^($1)$0
 endsnippet
@@ -164,8 +179,44 @@ endsnippet
 ### LIMITS
 priority 200
 context "math()"
+snippet sum "sum" wA
+limits(sum)_(${1:n = 1})^(${2:oo}) ${3:${VISUAL}} $0
+endsnippet
+
+context "math()"
+snippet prod "prod" wA
+limits(product)_(${1:n = 1})^(${2:oo}) ${3:${VISUAL}} $0
+endsnippet
+
+context "math()"
+snippet lim "limit" w
+limits(lim)_(${1:n} -> ${2:oo}) 
+endsnippet
+
+context "math()"
+snippet limsup "limsup" wA
+limits(limsup)_(${1:n} -> ${2:oo}) 
+endsnippet
+
+context "math()"
+snippet liminf "liminf" wA
+limits(liminf)_(${1:n} -> ${2:oo}) 
+endsnippet
+
+context "math()"
+snippet union "union" wA
+limits(union.big)_(${1:n = 1})^(${2:oo}) ${3:${VISUAL}} $0
+endsnippet
+
+context "math()"
+snippet sect "intersection" wA
+limits(sect.big)_(${1:n = 1})^(${2:oo}) ${3:${VISUAL}} $0
+endsnippet
+
+priority 200
+context "math()"
 snippet dint "definite integral" wA
-integral_(${1:-infinity})^(${2:infinity}) ${4:${VISUAL}} dif ${3:x} $0
+integral_(${1:-oo})^(${2:oo}) ${4:${VISUAL}} dif ${3:x} $0
 endsnippet
 
 priority 300
@@ -213,15 +264,61 @@ vv(`!p snip.rv=match.group(1)`)
 endsnippet
 
 context "math()"
-snippet ooo "infinity" iA
-infinity
-endsnippet
-
-context "math()"
 snippet emp "empty set" iA
 diameter
 endsnippet
 
 snippet ,, "tablesep" iA
  , $0
+endsnippet
+
+### GREEK 
+context "math()"
+snippet a; "alpha" iA
+alpha
+endsnippet
+
+context "math()"
+snippet b; "beta" iA
+beta
+endsnippet
+
+context "math()"
+snippet g; "gamma" iA
+gamma
+endsnippet
+
+context "math()"
+snippet d; "delta" iA
+delta
+endsnippet
+
+context "math()"
+snippet e; "epsilon" iA
+epsilon
+endsnippet
+
+context "math()"
+snippet t; "theta" iA
+theta
+endsnippet
+
+context "math()"
+snippet k; "kappa" iA
+kappa
+endsnippet
+
+context "math()"
+snippet l; "lambda" iA
+lambda
+endsnippet
+
+context "math()"
+snippet s; "sigma" iA
+sigma
+endsnippet
+
+context "math()"
+snippet o; "omega" iA
+omega
 endsnippet
