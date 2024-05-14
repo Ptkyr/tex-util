@@ -95,6 +95,11 @@ snippet note "Note" bA
 $0
 endsnippet
 
+snippet notn "Notn" bA
+#notation[$1]
+$0
+endsnippet
+
 snippet gj "RREF Steps" b
 $
 #grid(
@@ -121,8 +126,18 @@ endsnippet
 
 ###### MATH CONTEXT ######
 context "math()"
+snippet frac "Fraction" iA
+($1)/($2)$0
+endsnippet
+
+context "math()"
 snippet of "function of" iA
 (${1:x})$0
+endsnippet
+
+context "math()"
+snippet __ "subscript" iA
+_($1)$0
 endsnippet
 
 context "math()"
@@ -167,7 +182,12 @@ snippet inv "inverse" iA
 endsnippet
 
 context "math()"
-snippet set "set" wA
+snippet setm "setminus" wA
+backslash
+endsnippet
+
+context "math()"
+snippet set "set" w
 {$1}$0
 endsnippet
 
@@ -229,25 +249,36 @@ endsnippet
 priority 100
 context "math()"
 snippet geq "geq" iA
- >= 
+>= 
 endsnippet
 
 priority 100
 context "math()"
 snippet leq "leq" iA
- <= 
+<= 
 endsnippet
 
 priority 10
 context "math()"
 snippet eq "equals" iA
- &= $1 \\$0
+&= $1 \\$0
+endsnippet
+
+priority 10
+context "math()"
+snippet == "equals" iA
+&= 
+endsnippet
+
+context "math()"
+snippet ne "not equals" iA
+eq.not
 endsnippet
 
 priority 100
 context "math()"
 snippet cc "subseteq" iA
- subset.eq 
+subset.eq 
 endsnippet
 
 ### UTIL
@@ -261,6 +292,18 @@ priority 100
 context "math()"
 snippet "([0a-zA-Z](_{?[0-9a-z+-]+}?)?)vv" "vec" riA
 vv(`!p snip.rv=match.group(1)`)
+endsnippet
+
+priority 10
+context "math()"
+snippet "bar" "bar" ri
+overline($1)$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])bar" "bar" riA
+overline(`!p snip.rv=match.group(1)`)
 endsnippet
 
 context "math()"

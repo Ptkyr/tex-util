@@ -92,7 +92,7 @@
 #let remk(body) = {
     par(
         first-line-indent: 0pt,
-        [#highlight(fill: yellow, [_*Rk.*_]) #body]
+        [#highlight(fill: yellow, [_*Remark.*_]) #body]
     )
 }
 
@@ -100,5 +100,12 @@
     par(
         first-line-indent: 0pt,
         [#highlight(fill: red, [_*Note.*_]) #body]
+    )
+}
+
+#let notation(body) = {
+    par(
+        first-line-indent: 0pt,
+        [#highlight(fill: aqua, [_Notation._]) #body]
     )
 }
