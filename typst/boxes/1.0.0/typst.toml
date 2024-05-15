@@ -5,4 +5,4 @@ authors = ["Ptkyr"]
 license = "MIT"
 description = "Theorem boxes"
 
-entrypoint = "./boxes.typ"
+entrypoint = "./lib.typ"

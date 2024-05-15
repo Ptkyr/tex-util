@@ -306,6 +306,18 @@ snippet "([a-zA-Z])bar" "bar" riA
 overline(`!p snip.rv=match.group(1)`)
 endsnippet
 
+priority 10
+context "math()"
+snippet "hat" "hat" ri
+hat($1)$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])hat" "hat" riA
+hat(`!p snip.rv=match.group(1)`)
+endsnippet
+
 context "math()"
 snippet emp "empty set" iA
 diameter

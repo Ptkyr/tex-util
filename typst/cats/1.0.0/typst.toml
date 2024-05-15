@@ -1,8 +1,8 @@
 [package]
-name = "base"
+name = "cats"
 version = "1.0.0"
 authors = ["Ptkyr"]
 license = "MIT"
-description = "Formatting"
+description = "Calculus and stats macros"
 
 entrypoint = "./lib.typ"

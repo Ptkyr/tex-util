@@ -5,4 +5,4 @@ authors = ["Ptkyr"]
 license = "MIT"
 description = "Linear algebra templates"
 
-entrypoint = "./linalg.typ"
+entrypoint = "./lib.typ"

@@ -1,1 +1,2 @@
-*.pdf
+# Typst packages
+lib.pdf
