@@ -4,3 +4,4 @@
 #let hyp = math.op("hyp")
 #let unif = math.op("Unif")
 #let negbin = math.op("NB")
+#let geo = math.op("Geo")
