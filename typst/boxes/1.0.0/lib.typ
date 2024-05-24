@@ -64,7 +64,7 @@
     )
 }
 
-#let prop(title, content) = {
+#let propo(title, content) = {
     tbox(
         rgb("00855d"),
         "Proposition",

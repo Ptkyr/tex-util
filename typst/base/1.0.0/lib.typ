@@ -30,7 +30,7 @@
     show: doc
 
     // Don't know why but this has to be after the show
-    set enum(numbering: "(a)")
+    set enum(numbering: "(a).(i)")
 }
 
 #let tableau(..args) = {
@@ -59,6 +59,7 @@
 #let impby = math.arrow.l.double.long
 #let iff = math.arrow.l.r.double.long
 #let cup = math.union
+#let scup = math.union.sq
 #let cap = math.sect
 #let xx = math.times
 #let pm = math.plus.minus
@@ -67,6 +68,14 @@
 #let ominus = math.minus.circle
 #let otimes = math.times.circle
 #let odiv = math.div.circle
+
+#let image = "Im"
+#let ang(x) = $lr(angle.l #x angle.r)$
+
+#let todo(msg) = {
+    [#text(fill: red, weight: "bold", size: 12pt)[TODO #msg]]
+  }
+}
 
 // https://typst.app/project/pkaUy4f2m0mgmNQAoOMkBS
 #let foldl1(a, f) = a.slice(1).fold(a.first(), f)
@@ -97,7 +106,7 @@
 
 #let tag(eq_tag_array) = {
     let pairs = eq_tag_array.chunks(2, exact: true)
-    let tags = pairs.map(tag => "(" + tag.last() + ")")
+    let tags = pairs.map(tag => if tag.last() == none { none } else { "(" + tag.last() + ")" } )
     counter(math.equation).update(0)
     set math.equation(numbering: (a) => tags.at(a - 1))
     let eqs = pairs.map(eq => eq.first())
@@ -107,11 +116,11 @@
 Test
 
 #tag((
-    $ a &= 1/2 &= g &= 20 $, "foo",
+    $ a &= 1/2 &= g &= 20 $, none,
     $ b c &= 3 &= f (x)^2 &= H(Y) $, "bar"
 ))
 
 #tag((
   $ a &= p $, "triangle inequality",
-  $ a y x &= p l k $, $h in C$
+  $ a y x &= p l k $, none
 ))

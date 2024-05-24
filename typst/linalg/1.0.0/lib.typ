@@ -6,7 +6,7 @@
 // Operators
 // https://typst.app/docs/reference/math/op/
 #let span = math.op("Span")
-#let codim = math.op("codim")
+#let codim = math.op("codim", limits: false)
 #let nllty = math.op("nullity")
 #let rref = math.op("RREF")
 #let col = math.op("Col")

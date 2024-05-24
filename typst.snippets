@@ -39,10 +39,7 @@ else:
 endsnippet
 
 snippet dm "Block math" wA
-$
-${1:${VISUAL}}
-.
-$ 
+$ ${1:${VISUAL}}. $ 
 $0
 endsnippet
 
@@ -261,19 +258,8 @@ endsnippet
 
 priority 10
 context "math()"
-snippet eq "equals" iA
-&= $1 \\$0
-endsnippet
-
-priority 10
-context "math()"
-snippet == "equals" iA
+snippet === "equals" iA
 &= 
-endsnippet
-
-context "math()"
-snippet ne "not equals" iA
-eq.not
 endsnippet
 
 priority 100
@@ -377,4 +363,9 @@ endsnippet
 context "math()"
 snippet o; "omega" iA
 omega
+endsnippet
+
+context "math()"
+snippet del "partials" iA
+(partial $1)/(partial $2)$0
 endsnippet
