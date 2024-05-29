@@ -27,3 +27,9 @@
 // Real analysis
 #let diam = math.op("diam")
 #let dist = math.op("dist")
+
+// Group theory
+#let ord = math.op("ord")
+#let lcm = math.op("lcm")
+#let char = math.op("char")
+#let perm = math.op("Perm")

@@ -15,9 +15,9 @@
     show heading: set block(above: 1.4em, below: 1em)
 
     set par(leading: 0.55em, first-line-indent: 1.8em, justify: true)
-    show par: set block(spacing: 0.65em)
+    show par: set block(spacing: 1em)
 
-    set enum(numbering: "(a)")
+    set enum(numbering: "(a)", spacing: 1em, tight: false)
     set text(10pt, font: "New Computer Modern")
 
     set table.hline(stroke: 0.1pt)
@@ -69,7 +69,7 @@
 #let otimes = math.times.circle
 #let odiv = math.div.circle
 
-#let image = "Im"
+#let im = math.op("Im")
 #let ang(x) = $lr(angle.l #x angle.r)$
 
 #let todo(msg) = {
