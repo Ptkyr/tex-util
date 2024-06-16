@@ -72,7 +72,7 @@ $0
 endsnippet
 
 snippet prop "Proposition" bA
-#prop[$1][
+#propo[$1][
 $2
 ]
 $0
@@ -134,6 +134,11 @@ snippet of "function of" iA
 endsnippet
 
 context "math()"
+snippet ang "angle" iA
+angle.l $1 angle.r $0
+endsnippet
+
+context "math()"
 snippet __ "subscript" iA
 _($1)$0
 endsnippet
@@ -151,6 +156,11 @@ endsnippet
 context "math()"
 snippet "(s)([bfxynmjk])" "subn" riA
 _`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet "sll" "subn" riA
+_ell
 endsnippet
 
 # Stupid special case because of sin
@@ -371,6 +381,11 @@ snippet del "partials" iA
 endsnippet
 
 context "math()"
-snippet th "nth" iA
+snippet th "nth" i
 ^"th"
+endsnippet
+
+context "math()"
+snippet circ "degree" iA
+degree
 endsnippet

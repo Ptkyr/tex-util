@@ -26,6 +26,7 @@
 
     set math.mat(delim: "[")
     set math.vec(delim: "[")
+    set figure.caption(position: bottom)
 
     show: doc
 
@@ -54,6 +55,14 @@
     )
 }
 
+#let pplist(x) = x.fold([], (acc, item) => {
+  if acc == [] [
+    #item
+  ] else [
+    #acc, #item
+  ]
+})
+
 #let sgn = math.op("sgn")
 #let imp = math.arrow.r.double.long
 #let impby = math.arrow.l.double.long
@@ -73,7 +82,7 @@
 #let ang(x) = $lr(angle.l #x angle.r)$
 
 #let todo(msg) = {
-    [#text(fill: red, weight: "bold", size: 12pt)[TODO #msg]]
+    [#text(fill: red, weight: "bold", size: 10pt)[TODO #msg]]
   }
 }
 
