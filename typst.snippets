@@ -18,6 +18,8 @@ snippet template "Basic template" b
 #import "@local/boxes:1.0.0": *
 #import "@local/linalg:1.0.0": *
 
+#show: thmrules.with(qed-symbol: $square$)
+
 #show: doc => meta(
     "$1",
     doc,
@@ -40,6 +42,13 @@ endsnippet
 
 snippet dm "Block math" wA
 $ ${1:${VISUAL}}. $ 
+$0
+endsnippet
+
+snippet pf "Proof" bA
+#proof[
+$1
+]
 $0
 endsnippet
 

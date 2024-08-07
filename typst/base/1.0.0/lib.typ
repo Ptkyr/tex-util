@@ -85,11 +85,6 @@
 #let im = math.op("Im")
 #let ang(x) = $lr(angle.l #x angle.r)$
 
-#let todo(msg) = {
-    [#text(fill: red, weight: "bold", size: 10pt)[TODO #msg]]
-  }
-}
-
 #let angles(n, offset: 0) = array.range(0, n).map(a => a / n * calc.tau + offset)
 #let roonits(r, n, offset: 0) = angles(n, offset: offset).map(a => (r * calc.cos(a), r * calc.sin(a)))
 
