@@ -28,6 +28,9 @@
     set math.vec(delim: "[")
     set figure.caption(position: bottom)
 
+    show link: underline
+    show link: set text(blue)
+    
     show: doc
 
     // Don't know why but this has to be after the show
@@ -77,6 +80,7 @@
 #let ominus = math.minus.circle
 #let otimes = math.times.circle
 #let odiv = math.div.circle
+#let circ = math.circle.stroked.small
 
 #let im = math.op("Im")
 #let ang(x) = $lr(angle.l #x angle.r)$
@@ -84,6 +88,21 @@
 #let todo(msg) = {
     [#text(fill: red, weight: "bold", size: 10pt)[TODO #msg]]
   }
+}
+
+#let angles(n, offset: 0) = array.range(0, n).map(a => a / n * calc.tau + offset)
+#let roonits(r, n, offset: 0) = angles(n, offset: offset).map(a => (r * calc.cos(a), r * calc.sin(a)))
+
+#let shift(arr) = {
+  let a = arr.pop()
+  arr.insert(0, a)
+  arr
+}
+#let shiftn(n, arr) = {
+  for _ in array.range(n) {
+    arr = shift(arr)
+  }
+  arr
 }
 
 // https://typst.app/project/pkaUy4f2m0mgmNQAoOMkBS

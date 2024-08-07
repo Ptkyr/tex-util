@@ -1,3 +1,7 @@
+#import "@preview/ctheorems:1.1.2": *
+
+#let proof = thmproof("proof", "Proof")
+
 #let tboxcount = counter("tbox")
 
 #let tbox(
@@ -37,75 +41,23 @@
     heading("  " + name)
 }
 
-#let defn(title, content) = {
-    tbox(
-        luma(160),
-        "Definition",
-        title,
-        content
-    )
-}
 
-#let thm(title, content) = {
-    tbox(
-        rgb("00668f"),
-        "Theorem",
-        title,
-        content
-    )
-}
 
-#let lemma(title, content) = {
-    tbox(
-        rgb("a3006f"),
-        "Lemma",
-        title,
-        content
-    )
-}
+#let pog(string, color) = thmbox(
+    string, string, 
+    fill: color, 
+    inset: 0.8em,
+    padding: (top: -3pt, bottom: -3pt),
+    stroke: 0.8pt + color.darken(30%),
+)
 
-#let propo(title, content) = {
-    tbox(
-        rgb("00855d"),
-        "Proposition",
-        title,
-        content
-    )
-}
+#let defn = pog("Definition", luma(235))
+#let thm = pog("Theorem", rgb("c7d1ff"))
+#let lemma = pog("Lemma", rgb("f7bef5"))
+#let propo = pog("Proposition", rgb("dfc0fc"))
+#let cor = pog("Corollary", rgb("d4fcf9"))
 
-#let cor(title, content) = {
-    tbox(
-        rgb("5488e3"),
-        "Corollary",
-        title,
-        content
-    )
-}
-
-#let exmp(body) = {
-    par(
-        first-line-indent: 0pt,
-        [#highlight(fill: lime, [_*Ex.*_]) #body]
-    )
-}
-
-#let remk(body) = {
-    par(
-        first-line-indent: 0pt,
-        [#highlight(fill: yellow, [_*Remark.*_]) #body]
-    )
-}
-
-#let note(body) = {
-    par(
-        first-line-indent: 0pt,
-        [#highlight(fill: red, [_*Note.*_]) #body]
-    )
-}
-
-#let notation(body) = {
-    par(
-        first-line-indent: 0pt,
-        [#highlight(fill: aqua, [_Notation._]) #body]
-    )
-}
+#let exmp = pog("Example", rgb("d4fcd7")).with(numbering: none)
+#let remk = pog("Remark", rgb("fbfccc")).with(numbering: none)
+#let note = pog("Note", rgb("fccccc")).with(numbering: none)
+#let notation = thmplain("Notation", "Notation", titlefmt: underline).with(numbering: none)

@@ -33,3 +33,9 @@
 #let lcm = math.op("lcm")
 #let char = math.op("char")
 #let perm = math.op("Perm")
+
+#let hom = math.op("Hom")
+#let iso = math.op("Iso")
+#let end = math.op("End")
+#let aut = math.op("Aut")
+#let nsg = math.underline(text(spacing: 0pt, size: 11pt, math.triangle.l.stroked.small))
