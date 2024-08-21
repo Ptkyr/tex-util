@@ -27,7 +27,7 @@ sudo apt install `sudo apt --assume-no install texlive-full | \
         awk '/The following additional packages will be installed/{f=1;next} /Suggested packages/{f=0} f' | \
                 tr ' ' '\n' | grep -vP 'doc$' | grep -vP 'texlive-lang' | grep -vP 'latex-cjk' | tr '\n' ' '`
 ```
-Note that any custom package `.sty` files should go in `~/texmf/tex/latex/local/`.
+Note that any custom package `.sty` files should go in `~/texmf/tex/latex/local/`, or have this directory symlink to a repository with the packages. For Typst, the package directory is `~/.local/share/typst/packages/local`.
 
 3. Install [vim-plug](https://github.com/junegunn/vim-plug#unix)
 ```

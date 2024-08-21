@@ -11,7 +11,7 @@
     fill: color, 
     inset: 0.8em,
     padding: (top: -3pt, bottom: -3pt),
-    stroke: 0.8pt + color.darken(30%),
+    stroke: 1pt + color.darken(20%),
 )
 
 #let otherbox(string, color) = thmbox(
@@ -19,7 +19,7 @@
     fill: color, 
     inset: 0.4em,
     padding: (top: -3pt, bottom: -3pt),
-    stroke: 0.8pt + color.darken(30%),
+    stroke: 1pt + color.darken(20%),
     breakable: true, 
     titlefmt: emph,
     radius: 0pt,
