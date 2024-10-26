@@ -15,7 +15,7 @@
     show heading: set block(above: 1.4em, below: 1em)
 
     set par(leading: 0.55em, first-line-indent: 1.8em, justify: true)
-    show par: set block(spacing: 1em)
+    set par(spacing: 1em)
 
     set enum(numbering: "(a)", spacing: 1em, tight: false)
     set text(10pt, font: "New Computer Modern")
@@ -123,7 +123,7 @@
   let aligned = math.equation(block: true, numbering: none, esf.fold([], folder))
 
   hidden
-  style(s => v(-measure(hidden, s).height, weak: true))
+  context(v(-measure(aligned).height, weak: true))
   aligned
 }
 
