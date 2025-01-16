@@ -38,4 +38,7 @@
 #let iso = math.op("Iso")
 #let end = math.op("End")
 #let aut = math.op("Aut")
+#let Aut = math.op("Aut")
+#let Aut = math.op("Aut")
+#let Sym = math.op("Sym")
 #let nsg = math.underline(text(spacing: 0pt, size: 11pt, math.triangle.l.stroked.small))

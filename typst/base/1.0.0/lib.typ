@@ -37,6 +37,15 @@
     set enum(numbering: "(a).(i)")
 }
 
+#let question-counter = counter("question")
+#let question(body) = {
+  question-counter.step()
+  strong(context { question-counter.display("Q1.") })
+  parbreak()
+  body
+  pagebreak(weak: true)
+}
+
 #let tableau(..args) = {
     table(
         stroke: (x, y) => (
