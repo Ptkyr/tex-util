@@ -39,9 +39,9 @@
     radius: 0pt,
 ).with(numbering: none)
 
-#let remkbox(string, color) = thmbox(
+#let remkbox(titlefmt: emph, string, color) = thmbox(
     string, string, 
-    titlefmt: emph,
+    titlefmt: titlefmt,
     breakable: true, 
     ..box_settings(color),
 ).with(numbering: none)
@@ -74,7 +74,7 @@
 
 #let exmp = otherbox("Example", color_exmp)
 #let remk = remkbox("Remark", color_remk_dark)
-#let note = remkbox("Note", color_note_dark)
+#let note = remkbox(titlefmt: strong, "Note", color_note_dark)
 #let notation = thmplain("Notation", "Notation", titlefmt: underline).with(numbering: none)
 
 #let todofmt(x) = text(red)[*#x*]
