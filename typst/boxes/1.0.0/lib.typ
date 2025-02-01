@@ -16,7 +16,7 @@
     padding: (top: -3pt),
     radius: 0pt,
     stroke: (
-      left: 5pt + color, 
+      left: 3pt + color, 
       bottom: 1pt + gradient.linear(white, white, color),
       right: 1pt + gradient.linear(white, color, angle: 90deg)
     ),
