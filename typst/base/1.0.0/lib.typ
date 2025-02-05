@@ -46,6 +46,18 @@
   pagebreak(weak: true)
 }
 
+#let enum1(..args) = enum(numbering: "(1)", ..args)
+
+#let tfae(n, ..args) = enum(numbering: x => {
+  let y = calc.rem(x + 1, n)
+  if y == 0 {
+    y = n
+  }
+  [$(#x ==> #y)$]
+}, ..args)
+
+#let caseana(..args) = enum(numbering: x => [#emph([Case #x.])], ..args)
+
 #let tableau(..args) = {
     table(
         stroke: (x, y) => (

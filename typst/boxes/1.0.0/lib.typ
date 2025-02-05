@@ -1,7 +1,6 @@
 #import "@preview/ctheorems:1.1.3": *
 
 #let proof = thmproof("proof", "Proof",
-  outset: (left: -3pt),
   radius: 0pt,
   stroke: (left: 1pt + gradient.linear(dir: ttb, ..color.map.icefire)),
 )
@@ -11,13 +10,12 @@
 }
 
 #let box_settings(color) = (
-    inset: (left: 9pt, right: 0.8em, top: 0.3em, bottom: 0.5em),
-    outset: (left: -3pt),
+    inset: (left: 6pt, right: 0.8em, top: 0.3em, bottom: 0.5em),
     padding: (top: -3pt),
     radius: 0pt,
     stroke: (
       left: 3pt + color, 
-      bottom: 1pt + gradient.linear(white, white, color),
+      bottom: 1pt + gradient.linear(white, white, white, color),
       right: 1pt + gradient.linear(white, color, angle: 90deg)
     ),
 )
@@ -25,6 +23,7 @@
 #let tbox(string, color) = thmbox(
     "all",
     string, string, 
+    base_level: 1,
     ..box_settings(color),
 )
 
