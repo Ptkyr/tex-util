@@ -94,12 +94,12 @@
   exercise-counter.step()
   context {
     let ctr = str(exercise-counter.get().first())
-    let sol_lab = label("exsol" + ctr)
-    let ex_lab = label("ex" + ctr)
     let head = str(counter(heading).get().first())
     let fmt = i => i + " " + head + "." + ctr
+    let sol_lab = label(fmt("exsol"))
+    let ex_lab = label(fmt("ex"))
     let exer = remkbox(fmt("Exercise"), color_exer_dark, fade: false)
-    let exsol = remkbox(fmt("Solution"), color_exer_dark, fade: false)
+    let exsol = remkbox(head + "." + ctr, color_exer_dark, fade: false)
 
     show link: set text(color_exer_dark)
     [
