@@ -1,48 +1,49 @@
 #import "@preview/ctheorems:1.1.3": *
 
-#let proof = thmproof("proof", "Proof",
+#let proof = thmproof(
+  "proof",
+  "Proof",
   radius: 0pt,
   stroke: (left: 1pt + gradient.linear(dir: ttb, ..color.map.icefire)),
 )
 
 #let section(name) = {
-    heading("  " + name)
+  heading("  " + name)
 }
 
-#let box_settings(color) = (
-    inset: (left: 6pt, right: 0.8em, top: 0.3em, bottom: 0.5em),
-    padding: (top: -3pt),
-    radius: 0pt,
-    stroke: (
-      left: 3pt + color, 
-      bottom: 1pt + gradient.linear(white, white, white, color),
-      right: 1pt + gradient.linear(white, color, angle: 90deg)
-    ),
+#let box_settings(color, fade: true) = (
+  inset: (left: 6pt, right: 0.8em, top: 0.3em, bottom: 0.5em),
+  padding: (top: -3pt),
+  radius: 0pt,
+  stroke: (
+    left: 3pt + color,
+    bottom: if fade {
+      1pt + gradient.linear(white, white, white, white, color)
+    } else {
+      none
+    },
+    right: if fade {
+      1pt + gradient.linear(white, color, angle: 90deg)
+    } else {
+      none
+    },
+  ),
 )
 
-#let tbox(string, color) = thmbox(
-    "all",
-    string, string, 
-    base_level: 1,
-    ..box_settings(color),
+#let tbox(string, color, fade: true) = thmbox(
+  "all",
+  string,
+  string,
+  base_level: 1,
+  ..box_settings(color, fade: fade),
 )
 
-#let otherbox(string, color) = thmbox(
-    string, string, 
-    fill: color, 
-    inset: 0.4em,
-    padding: (top: -3pt, bottom: -3pt),
-    stroke: 1pt + color.darken(20%),
-    breakable: true, 
-    titlefmt: emph,
-    radius: 0pt,
-).with(numbering: none)
-
-#let remkbox(titlefmt: emph, string, color) = thmbox(
-    string, string, 
-    titlefmt: titlefmt,
-    breakable: true, 
-    ..box_settings(color),
+#let remkbox(titlefmt: emph, string, color, fade: true) = thmbox(
+  string,
+  string,
+  titlefmt: titlefmt,
+  breakable: true,
+  ..box_settings(color, fade: fade),
 ).with(numbering: none)
 
 #let color_defn_dark = luma(125)
@@ -81,3 +82,47 @@
 
 #let todofmt(x) = text(red)[*#x*]
 #let todo = thmplain("todo", "TODO", titlefmt: todofmt, bodyfmt: todofmt).with(numbering: none)
+
+#let color_exer_dark = rgb("fcba03")
+#let exercise-counter = counter("exercise")
+
+#let exsol-counter = counter("exsols")
+
+#let solutions = state("sol-buffer", ())
+
+#let exercise(ex-content, sol-content) = {
+  exercise-counter.step()
+  context {
+    let ctr = str(exercise-counter.get().first())
+    let sol_lab = label("exsol" + ctr)
+    let ex_lab = label("ex" + ctr)
+    let head = str(counter(heading).get().first())
+    let fmt = i => i + " " + head + "." + ctr
+    let exer = remkbox(fmt("Exercise"), color_exer_dark, fade: false)
+    let exsol = remkbox(fmt("Solution"), color_exer_dark, fade: false)
+
+    show link: set text(color_exer_dark)
+    [
+      #exer[
+        #ex-content #h(1fr) #link(sol_lab, $triangle.r.filled$)
+      ] #ex_lab
+    ]
+    solutions.update(x => {
+      x.push([
+        #exsol[
+          #sol-content #h(1fr) #link(ex_lab, $triangle.l.filled$)
+        ] #sol_lab
+      ])
+      x
+    })
+  }
+}
+
+#let display-sols() = {
+  show link: set text(color_exer_dark)
+  context {
+    for sol in solutions.final() {
+      sol
+    }
+  }
+}
