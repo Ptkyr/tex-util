@@ -90,6 +90,13 @@
 
 #let solutions = state("sol-buffer", ())
 
+#let exproof(string, color, fade: true) = thmproof(
+  "ex",
+  string,
+  radius: 0pt,
+  ..box_settings(color, fade: false)
+)
+
 #let exercise(ex-content, sol-content) = {
   exercise-counter.step()
   context {
@@ -98,23 +105,28 @@
     let fmt = i => i + " " + head + "." + ctr
     let sol_lab = label(fmt("exsol"))
     let ex_lab = label(fmt("ex"))
-    let exer = remkbox(fmt("Exercise"), color_exer_dark, fade: false)
-    let exsol = remkbox(head + "." + ctr, color_exer_dark, fade: false)
+    let exer = exproof(fmt("Exercise"), color_exer_dark, fade: false)
+    let exsol = exproof(head + "." + ctr, color_exer_dark, fade: false)
 
     show link: set text(color_exer_dark)
+    let old-qed = thm-qed-symbol.get()
+    show: thmrules.with(qed-symbol: link(sol_lab, $triangle.r.filled$))
     [
-      #exer[
-        #ex-content #h(1fr) #link(sol_lab, $triangle.r.filled$)
-      ] #ex_lab
+        #exer[
+          #ex-content
+        ] #ex_lab
     ]
+
+    show: thmrules.with(qed-symbol: link(ex_lab, $triangle.l.filled$))
     solutions.update(x => {
       x.push([
         #exsol[
-          #sol-content #h(1fr) #link(ex_lab, $triangle.l.filled$)
-        ] #sol_lab
+          #sol-content
+        ] #sol_lab  
       ])
       x
     })
+    show: thmrules.with(qed-symbol: old-qed)
   }
 }
 
