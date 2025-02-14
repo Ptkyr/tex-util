@@ -46,17 +46,26 @@
   pagebreak(weak: true)
 }
 
-#let enum1(..args) = enum(numbering: "(1)", ..args)
+#let enum1(body) = {
+  set enum(numbering: "(1)")
+  body
+}
 
-#let tfae(n, ..args) = enum(numbering: x => {
-  let y = calc.rem(x + 1, n)
-  if y == 0 {
-    y = n
-  }
-  [$(#x ==> #y)$]
-}, ..args)
+#let tfae(n, body) = {
+  set enum(numbering: x => {
+    let y = calc.rem(x + 1, n)
+    if y == 0 {
+      y = n
+    }
+    [$(#x ==> #y)$]
+  })
+  body
+}
 
-#let caseana(..args) = enum(numbering: x => [#emph([Case #x.])], ..args)
+#let caseana(body) = {
+  set enum(numbering: x => [#emph([Case #x.])])
+  body 
+}
 
 #let tableau(..args) = {
     table(
