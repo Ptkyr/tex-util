@@ -3,6 +3,15 @@ def math():
 	return vim.eval('typst#in_math()') == '1'
 endglobal
 
+# i literally can't figure out where this snippet is coming from
+# but it's so annoying so we override it
+snippet (c) "disable copyright" b
+(c)
+endsnippet
+snippet c) "disable copyright" b
+c)
+endsnippet
+
 snippet [] "Content" wA
 [$1]$0
 endsnippet
