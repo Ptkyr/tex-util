@@ -1,0 +1,8 @@
+[package]
+name = "youngtab"
+version = "1.0.0"
+authors = ["Ptkyr"]
+license = "MIT"
+description = "Young tableaux and tabloids"
+
+entrypoint = "./lib.typ"
