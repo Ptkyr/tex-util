@@ -28,8 +28,21 @@
     set math.vec(delim: "[")
     set figure.caption(position: bottom)
 
+    show ref: it => {
+      let el = it.element
+      if el != none and el.func() == heading {
+        link(el.location(), text(fill: blue, "§" + numbering(
+          el.numbering,
+          ..counter(heading).at(el.location())
+        )))
+      } else {
+        link(el.location(), underline(text(fill: blue, it)))
+      }
+    }
+
     show link: underline
     show link: set text(blue)
+
     
     show: doc
 
