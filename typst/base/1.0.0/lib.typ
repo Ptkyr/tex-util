@@ -64,6 +64,13 @@
   body
 }
 
+#let sanpi(san, pi) = [
+  #set list(marker: $checkmark$)
+  #san
+  #set list(marker: $crossmark$)
+  #pi
+]
+
 #let tfae(n, body) = {
   set enum(numbering: x => {
     let y = calc.rem(x + 1, n)
